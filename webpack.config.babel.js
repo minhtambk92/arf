@@ -1,11 +1,13 @@
-var webpack = require('webpack');
-var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-var path = require('path');
-var env = require('yargs').argv.mode;
+import webpack from 'webpack';
+import path from 'path';
+import yargs from 'yargs';
 
-var libraryName = 'Library';
+const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+const env = yargs.argv.mode;
+const libraryName = 'Library';
 
-var plugins = [], outputFile;
+let plugins = [];
+let outputFile;
 
 if (env === 'build') {
   plugins.push(new UglifyJsPlugin({ minimize: true }));
@@ -14,11 +16,11 @@ if (env === 'build') {
   outputFile = libraryName + '.js';
 }
 
-var config = {
+const config = {
   entry: __dirname + '/src/index.js',
   devtool: 'source-map',
   output: {
-    path: __dirname + '/lib',
+    path: __dirname + '/build',
     filename: outputFile,
     library: libraryName,
     libraryTarget: 'umd',
@@ -33,7 +35,7 @@ var config = {
       },
       {
         test: /(\.jsx|\.js)$/,
-        loader: "eslint-loader",
+        loader: 'eslint-loader',
         exclude: /node_modules/
       }
     ]
