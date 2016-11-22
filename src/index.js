@@ -1,8 +1,7 @@
-export default class Library {
-  constructor() {
-    this._name = 'Library';
-  }
-  get name() {
-    return this._name;
-  }
-}
+import Data from './Data';
+
+console.log(Data.name); // eslint-disable-line no-console
+
+export default {
+  Data,
+};

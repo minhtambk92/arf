@@ -26,7 +26,17 @@
 
   "parser": "babel-eslint",
 
+  "extends": "airbnb",
+
   "plugins": [],
 
-  "rules": {}
+  "rules": {
+    "no-underscore-dangle": [
+      2,
+      {
+        "allowAfterThis": true,
+        "allowAfterSuper": true
+      }
+    ]
+  }
 }
