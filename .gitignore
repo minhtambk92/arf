@@ -31,3 +31,6 @@ build
 
 # IDE project files
 .idea
+
+# List of testing file
+index.html
