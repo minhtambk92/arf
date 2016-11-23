@@ -2,30 +2,24 @@ import path from 'path';
 import webpack from 'webpack'; // eslint-disable-line import/no-extraneous-dependencies
 import yargs from 'yargs'; // eslint-disable-line import/no-extraneous-dependencies
 
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 const env = yargs.argv.mode;
+const isProduction = (env === 'build');
 const libraryName = 'Library';
-const plugins = [];
-
-let outputFile;
-
-if (env === 'build') {
-  plugins.push(new UglifyJsPlugin({ minimize: true }));
-  outputFile = `${libraryName}.min.js`;
-} else {
-  outputFile = `${libraryName}.js`;
-}
 
 const config = {
+
   entry: `${__dirname}/src/index.js`,
+
   devtool: 'source-map',
+
   output: {
     path: `${__dirname}/build`,
-    filename: outputFile,
+    filename: isProduction ? `${libraryName}.min.js` : `${libraryName}.js`,
     library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
+
   module: {
     loaders: [
       {
@@ -40,11 +34,29 @@ const config = {
       },
     ],
   },
+
   resolve: {
+    alias: {
+      vue$: `${__dirname}/node_modules/vue/dist/vue.common.js`,
+    },
     root: path.resolve('./src'),
     extensions: ['', '.js'],
   },
-  plugins,
+
+  plugins: [
+    ...(isProduction ? [
+      // In production plugins
+      // minify with dead-code elimination
+      new webpack.optimize.UglifyJsPlugin({
+        compress: isProduction && { warnings: false },
+      }),
+    ] : [
+      // In development plugins
+    ]),
+    // optimize module ids by occurence count
+    new webpack.optimize.OccurenceOrderPlugin(),
+  ],
+
 };
 
 module.exports = config;

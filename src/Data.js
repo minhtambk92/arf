@@ -4,14 +4,18 @@
 
 class Data {
 
-  constructor() {
-    this._name = 'Library';
+  constructor(response) {
+    this._data = Object.assign({}, response.data);
+    this._banners = this._data.banners;
   }
 
-  get name() {
-    return this._name;
+  get data() {
+    return this._data;
   }
 
+  get banners() {
+    return this._banners;
+  }
 }
 
 export default Data;

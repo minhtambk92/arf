@@ -24,6 +24,8 @@
     "eslint-plugin-jsx-a11y": "2.2.3",
     "eslint-plugin-react": "latest",
     "mocha": "latest",
+    "vue": "^2.1.0",
+    "vue-loader": "^10.0.0",
     "webpack": "latest",
     "yargs": "latest"
   },
