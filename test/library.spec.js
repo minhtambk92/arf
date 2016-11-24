@@ -1,7 +1,7 @@
 import chai from 'chai';
 import {
   Data,
-} from '../src';
+} from '../build/Library';
 
 chai.expect();
 

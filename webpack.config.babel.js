@@ -26,6 +26,7 @@ const config = {
         test: /(\.jsx|\.js)$/,
         loader: 'babel',
         exclude: /(node_modules|bower_components)/,
+        query: { compact: 'auto' },
       },
       {
         test: /(\.jsx|\.js)$/,
