@@ -2,7 +2,9 @@
  * Created by Manhhailua on 11/23/16.
  */
 
-import Vue from 'vue'; // eslint-disable-line import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies */
+
+import Vue from 'vue';
 
 const Banner = Vue.component('banner', {
 
@@ -16,7 +18,9 @@ const Banner = Vue.component('banner', {
       iframe.contentWindow.document.close();
     };
 
-    self.$el.appendChild(iframe);
+    if (self.$el) {
+      self.$el.appendChild(iframe);
+    }
   },
 
   props: ['adsHtml'],

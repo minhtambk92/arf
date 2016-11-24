@@ -6,7 +6,7 @@
 
 import { Data } from './models';
 import {
-  Zone,
+  Banner,
 } from './components';
 
 /* eslint-disable */
@@ -82,12 +82,21 @@ const response = new Data({
 });
 /* eslint-enable */
 
-const zoneId = 'ads-1';
+// const zoneId = 'ads-1';
+//
+// const zone = new Zone({ // eslint-disable-line no-unused-vars
+//   el: `#${zoneId}`,
+//   propsData: {
+//     id: zoneId,
+//   },
+// });
 
-const zone = new Zone({ // eslint-disable-line no-unused-vars
-  el: `#${zoneId}`,
+const bannerId = 'ads-1';
+
+const banner = new Banner({ // eslint-disable-line no-unused-vars
+  el: `#${bannerId}`,
   propsData: {
-    id: zoneId,
+    id: bannerId,
   },
 });
 

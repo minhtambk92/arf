@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode=build",
     "dev": "webpack --progress --colors --watch --mode=dev",
-    "test": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js"
+    "test": "mocha --compilers js:babel-core/register -r jsdom-global/register --colors -w ./test/*.spec.js"
   },
   "devDependencies": {
     "babel": "latest",
@@ -23,6 +23,8 @@
     "eslint-plugin-import": "latest",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "latest",
+    "jsdom": "latest",
+    "jsdom-global": "latest",
     "mocha": "latest",
     "vue": "latest",
     "vue-loader": "latest",
