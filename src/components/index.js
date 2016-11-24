@@ -5,7 +5,9 @@
 /* eslint-disable import/prefer-default-export */
 
 import Banner from './Banner';
+import Zone from './Zone';
 
 export {
   Banner,
+  Zone,
 };

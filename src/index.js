@@ -1,6 +1,13 @@
-import Vue from 'vue'; // eslint-disable-line import/no-extraneous-dependencies
-import Data from './Data';
-import { Banner } from './components';
+/**
+ * Created by Manhhailua on 11/23/16.
+ */
+
+/* eslint-disable import/prefer-default-export */
+
+import { Data } from './models';
+import {
+  Zone,
+} from './components';
 
 /* eslint-disable */
 const response = new Data({
@@ -75,16 +82,15 @@ const response = new Data({
 });
 /* eslint-enable */
 
-const app = new Vue({ // eslint-disable-line no-unused-vars
+const zoneId = 'ads-1';
 
-  el: '#ads-1',
-
-  components: {
-    Banner,
+const zone = new Zone({ // eslint-disable-line no-unused-vars
+  el: `#${zoneId}`,
+  propsData: {
+    id: zoneId,
   },
-
 });
 
-export default {
+export {
   Data,
 };
