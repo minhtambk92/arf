@@ -25,4 +25,4 @@ const Banner = Vue.component('banner', {
 
 });
 
-export default Banner
+export default Banner;
