@@ -25,6 +25,7 @@
     "eslint-plugin-react": "latest",
     "jsdom": "latest",
     "jsdom-global": "latest",
+    "lodash": "^4.17.2",
     "mocha": "latest",
     "vue": "latest",
     "vue-loader": "latest",
