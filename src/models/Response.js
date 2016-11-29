@@ -14,7 +14,7 @@ class Response {
   }
 
   // Output response "response.data"
-  get raw() {
+  get model() {
     return this._data;
   }
 

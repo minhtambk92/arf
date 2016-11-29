@@ -5,15 +5,15 @@
 class Zone {
 
   constructor(zone) {
-    this._raw = zone;
-    this._id = this._raw.id;
-    this._width = this._raw.width;
-    this._height = this._raw.height;
-    this._placements = this._raw.placements;
+    this._model = zone;
+    this._id = this._model.id;
+    this._width = this._model.width;
+    this._height = this._model.height;
+    this._placements = this._model.placements;
   }
 
-  get raw() {
-    return this._raw;
+  get model() {
+    return this._model;
   }
 
   get id() {

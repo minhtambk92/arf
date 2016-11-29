@@ -7,16 +7,8 @@ import Vue from 'vue'; // eslint-disable-line import/no-extraneous-dependencies
 const Zone = Vue.component('zone', {
 
   props: {
-    raw: {
+    model: {
       type: Object,
-    },
-    width: {
-      type: Number,
-      default: 0,
-    },
-    height: {
-      type: Number,
-      default: 0,
     },
     iframe: {
       type: Object,
@@ -25,12 +17,6 @@ const Zone = Vue.component('zone', {
         frameBorder: 0,
         marginWidth: 0,
         marginHeight: 0,
-      }),
-    },
-    banner: {
-      type: Object,
-      default: () => ({
-        html: '<p>No Ads!</p>',
       }),
     },
   },
@@ -43,17 +29,18 @@ const Zone = Vue.component('zone', {
 
     _writeToIFrame() {
       const self = this;
+      const { width, height, placements } = self.model;
       const iframe = self.iframe.el;
 
       iframe.onload = () => {
-        iframe.width = self.width;
-        iframe.height = self.height;
+        iframe.width = width;
+        iframe.height = height;
         iframe.frameBorder = self.iframe.frameBorder;
         iframe.marginWidth = self.iframe.marginWidth;
         iframe.marginHeight = self.iframe.marginHeight;
 
         iframe.contentWindow.document.open();
-        iframe.contentWindow.document.write(self.banner.html);
+        iframe.contentWindow.document.write(placements[1].banners[0].html);
         iframe.contentWindow.document.close();
       };
 

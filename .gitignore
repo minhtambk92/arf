@@ -28,6 +28,7 @@ node_modules
 
 # Output folder
 build
+demo
 
 # IDE project files
 .idea

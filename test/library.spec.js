@@ -57,16 +57,16 @@ describe('Given an instance of ads response', () => {
     });
 
     it('which should contains "data" attribute as an object', () => {
-      // "raw" is the output of response class Data
+      // "model" is the output of response class Data
       expect(response)
-        .to.have.property('raw')
+        .to.have.property('model')
         .that.is.an('object');
     });
   });
 
   describe('when we have "data" attribute', () => {
     before(() => {
-      data = response.raw;
+      data = response.model;
     });
 
     it('which should contains "zones" attribute as an array', () => {

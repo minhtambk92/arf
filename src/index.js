@@ -20,8 +20,8 @@ const response = new ResponseModel({
     "zones": [
       {
         "id": "77d24611-827d-4ac6-85e7-89332626b575",
-        "width": 468,
-        "height": 60,
+        "width": 900,
+        "height": 300,
         "placements": [
           {
             "id": "2FB675E9-242F-4BD7-AD6A-206210B008C2",
@@ -52,14 +52,11 @@ const response = new ResponseModel({
 });
 /* eslint-enable */
 
-const responseZone = new ZoneModel(response.getZoneById('77d24611-827d-4ac6-85e7-89332626b575'));
-
+const zoneId = '77d24611-827d-4ac6-85e7-89332626b575';
 const zone = new Zone({ // eslint-disable-line no-unused-vars
-  el: `#z-${responseZone.id}`,
+  el: document.getElementById(zoneId),
   propsData: {
-    width: responseZone.width, // eslint-disable-line
-    height: responseZone.height,
-    banner: responseZone.placements[1].banners[0],
+    model: new ZoneModel(response.getZoneById(zoneId)),
   },
 });
 
