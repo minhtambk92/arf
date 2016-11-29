@@ -8,22 +8,14 @@ import Vue from 'vue';
 
 const Banner = Vue.component('banner', {
 
-  mounted() {
-    const self = this;
-    const iframe = document.createElement('iframe');
-
-    iframe.onload = () => {
-      iframe.contentWindow.document.open();
-      iframe.contentWindow.document.write(self.adsHtml);
-      iframe.contentWindow.document.close();
-    };
-
-    if (self.$el) {
-      self.$el.appendChild(iframe);
-    }
+  props: {
+    raw: {
+      type: Object,
+    },
+    html: {
+      type: String,
+    },
   },
-
-  props: ['adsHtml'],
 
   template: '<div></div>',
 

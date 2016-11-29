@@ -4,8 +4,10 @@
 
 /* eslint-disable import/prefer-default-export */
 
-import Data from './Data';
+import Response from './Response';
+import Zone from './Zone';
 
 export {
-  Data,
+  Response,
+  Zone,
 };
