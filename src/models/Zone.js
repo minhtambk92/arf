@@ -2,34 +2,29 @@
  * Created by Manhhailua on 11/25/16.
  */
 
-class Zone {
+import Entity from './Entity';
+import Placement from './Placement';
+import Banner from './Banner';
+
+class Zone extends Entity {
 
   constructor(zone) {
-    this._model = zone;
-    this._id = this._model.id;
-    this._width = this._model.width;
-    this._height = this._model.height;
-    this._placements = this._model.placements;
-  }
+    super(zone);
 
-  get model() {
-    return this._model;
-  }
-
-  get id() {
-    return this._id;
-  }
-
-  get width() {
-    return this._width;
-  }
-
-  get height() {
-    return this._height;
+    this._placements = zone.placements;
   }
 
   get placements() {
     return this._placements;
+  }
+
+  activePlacement() {
+    return new Placement(this.placements.find((placement, index) => (index === 1)));
+  }
+
+  activeBanner() {
+    const activePlacement = this.activePlacement();
+    return new Banner(activePlacement.banners.find((banner, index) => (index === 0)));
   }
 
 }

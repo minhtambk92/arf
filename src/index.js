@@ -4,10 +4,7 @@
 
 /* eslint-disable import/prefer-default-export */
 
-import {
-  Response as ResponseModel,
-  Zone as ZoneModel,
-} from './models';
+import { Response } from './models';
 import {
   Banner,
   Placement,
@@ -15,7 +12,7 @@ import {
 } from './components';
 
 /* eslint-disable */
-const response = new ResponseModel({
+const response = new Response({
   "data": {
     "zones": [
       {
@@ -56,13 +53,12 @@ const zoneId = '77d24611-827d-4ac6-85e7-89332626b575';
 const zone = new Zone({ // eslint-disable-line no-unused-vars
   el: document.getElementById(zoneId),
   propsData: {
-    model: new ZoneModel(response.getZoneById(zoneId)),
+    model: response.getZoneById(zoneId),
   },
 });
 
 export {
-  ResponseModel,
-  ZoneModel,
+  Response,
   Banner,
   Placement,
   Zone,

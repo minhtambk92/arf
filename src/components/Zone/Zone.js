@@ -3,6 +3,7 @@
  */
 
 import Vue from 'vue'; // eslint-disable-line import/no-extraneous-dependencies
+import { Zone as ZoneModel } from '../../models';
 
 const Zone = Vue.component('zone', {
 
@@ -21,15 +22,28 @@ const Zone = Vue.component('zone', {
     },
   },
 
+  computed: {
+    current() {
+      return new ZoneModel(this.model);
+    },
+    activePlacement() {
+      return this.current.activePlacement();
+    },
+    activeBanner() {
+      return this.current.activeBanner();
+    },
+  },
+
   mounted() {
-    this._writeToIFrame();
+    this._renderToIFrame();
+    console.log(this.activeBanner); // eslint-disable-line
   },
 
   methods: {
 
-    _writeToIFrame() {
+    _renderToIFrame() {
       const self = this;
-      const { width, height, placements } = self.model;
+      const { width, height } = self.current;
       const iframe = self.iframe.el;
 
       iframe.onload = () => {
@@ -40,7 +54,7 @@ const Zone = Vue.component('zone', {
         iframe.marginHeight = self.iframe.marginHeight;
 
         iframe.contentWindow.document.open();
-        iframe.contentWindow.document.write(placements[1].banners[0].html);
+        iframe.contentWindow.document.write(self.activeBanner.html);
         iframe.contentWindow.document.close();
       };
 

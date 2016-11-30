@@ -1,6 +1,6 @@
 import chai from 'chai';
 import {
-  ResponseModel,
+  Response,
 } from '../src';
 
 chai.expect();
@@ -13,7 +13,7 @@ let data;
 describe('Given an instance of ads response', () => {
   before(() => {
     /* eslint-disable */
-    response = new ResponseModel({
+    response = new Response({
       "data": {
         "zones": [
           {
@@ -53,7 +53,7 @@ describe('Given an instance of ads response', () => {
 
   describe('when we need an ads response', () => {
     it('which should be an instance of class Data', () => {
-      expect(response).to.be.an.instanceof(ResponseModel);
+      expect(response).to.be.an.instanceof(Response);
     });
 
     it('which should contains "data" attribute as an object', () => {
