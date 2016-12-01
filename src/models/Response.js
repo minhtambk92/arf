@@ -4,8 +4,6 @@
 
 /* eslint-disable import/no-extraneous-dependencies */
 
-import _ from 'lodash';
-
 class Response {
 
   constructor(response) {
@@ -25,7 +23,7 @@ class Response {
 
   // Find zone by id from "response.data.zones"
   getZoneById(id) {
-    return _.find(this._zones, { id });
+    return this._zones.find(zone => zone.id === id);
   }
 
 }
