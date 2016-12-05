@@ -5,16 +5,24 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import Vue from 'vue';
+import { Banner as BannerModel } from '../../models';
 
 const Banner = Vue.component('banner', {
 
   props: {
-    raw: {
+    model: {
       type: Object,
     },
-    html: {
-      type: String,
+  },
+
+  computed: {
+    current() {
+      return new BannerModel(this.model);
     },
+  },
+
+  mounted() {
+    //
   },
 
   template: '<div></div>',

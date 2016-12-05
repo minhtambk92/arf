@@ -6,10 +6,12 @@
 
 import Banner from './Banner';
 import Placement from './Placement';
+import Share from './Share';
 import Zone from './Zone';
 
 export {
   Banner,
   Placement,
+  Share,
   Zone,
 };

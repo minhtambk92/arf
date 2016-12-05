@@ -2,7 +2,9 @@
  * Created by Manhhailua on 11/24/16.
  */
 
-import Vue from 'vue'; // eslint-disable-line import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies */
+
+import Vue from 'vue';
 import { Zone as ZoneModel } from '../../models';
 
 const Zone = Vue.component('zone', {
@@ -39,7 +41,6 @@ const Zone = Vue.component('zone', {
 
   mounted() {
     this._renderToIFrame();
-    console.log(this.activeBanner); // eslint-disable-line
   },
 
   methods: {

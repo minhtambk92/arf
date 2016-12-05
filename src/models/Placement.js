@@ -10,15 +10,15 @@ class Placement extends Entity {
   constructor(placement) {
     super(placement);
 
-    this._banners = placement.banners; // eslint-disable-line
+    this._banners = placement.banners;
   }
 
   get banners() {
     return this._banners;
   }
 
-  async activeBanner() {
-    const tmpBanner = await this.banners.find((banner, index) => (index === 1));
+  activeBanner() {
+    const tmpBanner = this.banners.find((banner, index) => (index === 0));
     return new Banner(tmpBanner);
   }
 }

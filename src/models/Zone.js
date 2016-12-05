@@ -17,18 +17,18 @@ class Zone extends Entity {
     return this._shares;
   }
 
-  async activeShare() {
-    const tmpShare = await this.shares.find((share, index) => (index === 0));
+  activeShare() {
+    const tmpShare = this.shares.find((share, index) => (index === 0));
     return new Share(tmpShare);
   }
 
-  async activePlacement() {
-    const tmpShare = await this.activeShare();
+  activePlacement() {
+    const tmpShare = this.activeShare();
     return tmpShare.activePlacement();
   }
 
-  async activeBanner() {
-    const tmpPlacement = await this.activePlacement();
+  activeBanner() {
+    const tmpPlacement = this.activePlacement();
     return tmpPlacement.activeBanner();
   }
 

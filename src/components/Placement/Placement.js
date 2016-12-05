@@ -2,13 +2,22 @@
  * Created by Manhhailua on 11/24/16.
  */
 
-import Vue from 'vue'; // eslint-disable-line import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies */
+
+import Vue from 'vue';
+import { Placement as PlacementModel } from '../../models';
 
 const Placement = Vue.component('placement', {
 
   props: {
-    id: {
-      type: String,
+    model: {
+      type: Object,
+    },
+  },
+
+  computed: {
+    current() {
+      return new PlacementModel(this.model);
     },
   },
 
