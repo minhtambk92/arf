@@ -24,7 +24,8 @@ class Zone extends Entity {
   }
 
   activePlacement() {
-    return new Placement(this.activeShare.find((placement, index) => (index === 1)));
+    const activeShare = this.activeShare();
+    return new Placement(activeShare.find((placement, index) => (index === 1)));
   }
 
   activeBanner() {
