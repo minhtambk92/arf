@@ -31,3 +31,6 @@ build
 
 # IDE project files
 .idea
+
+# MacOS file
+.DS_Store
