@@ -9,12 +9,7 @@ class Banner extends Entity {
   constructor(banner) {
     super(banner);
 
-    this._html = banner.html;
     this._type = banner.type;
-  }
-
-  get html() {
-    return this._html;
   }
 
   get type() {

@@ -8,6 +8,8 @@ class Entity {
     this._id = entity.id;
     this._width = entity.width;
     this._height = entity.height;
+    this._html = entity.html;
+    this._css = entity.css;
   }
 
   get id() {
@@ -20,6 +22,14 @@ class Entity {
 
   get height() {
     return this._height;
+  }
+
+  get html() {
+    return this._html;
+  }
+
+  get css() {
+    return this._css;
   }
 
 }

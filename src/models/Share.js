@@ -12,6 +12,10 @@ class Share extends Entity {
     this._placements = share.placements;
   }
 
+  get placements() {
+    return this._placements;
+  }
+
 }
 
 export default Share;
