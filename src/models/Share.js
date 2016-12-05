@@ -3,6 +3,7 @@
  */
 
 import Entity from './Entity';
+import Placement from './Placement';
 
 class Share extends Entity {
 
@@ -16,6 +17,10 @@ class Share extends Entity {
     return this._placements;
   }
 
+  async activePlacement() {
+    const tmpPlacement = await this.placements.find((placement, index) => (index === 0));
+    return new Placement(tmpPlacement);
+  }
 }
 
 export default Share;

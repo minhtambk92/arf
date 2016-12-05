@@ -21,20 +21,9 @@ const response = new Response({
         "height": 300,
         "shares": [
           {
-            "width": 100,
-            "height": 50,
+            "width": 900,
+            "height": 300,
             "placements": [
-              {
-                "id": "2FB675E9-242F-4BD7-AD6A-206210B008C2",
-                "banners": [
-                  {
-                    "id": "50431e1c-2c59-4139-9ee0-c20f7dec643c",
-                    "html": "",
-                    "weight": 1,
-                    "type": "img"
-                  }
-                ]
-              },
               {
                 "id": "ff8a2da9-628e-479a-a631-d080e103f2a3",
                 "banners": [
@@ -49,15 +38,15 @@ const response = new Response({
             ]
           },
           {
-            "width": 100,
-            "height": 50,
+            "width": 900,
+            "height": 300,
             "placements": [
               {
                 "id": "2FB675E9-242F-4BD7-AD6A-206210B008C2",
                 "banners": [
                   {
                     "id": "50431e1c-2c59-4139-9ee0-c20f7dec643c",
-                    "html": "",
+                    "html": "ABC",
                     "weight": 1,
                     "type": "img"
                   }

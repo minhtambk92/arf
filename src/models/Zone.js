@@ -4,8 +4,6 @@
 
 import Entity from './Entity';
 import Share from './Share';
-import Placement from './Placement';
-import Banner from './Banner';
 
 class Zone extends Entity {
 
@@ -19,18 +17,19 @@ class Zone extends Entity {
     return this._shares;
   }
 
-  activeShare() {
-    return new Share(this.shares.find((share, index) => (index === 0)));
+  async activeShare() {
+    const tmpShare = await this.shares.find((share, index) => (index === 0));
+    return new Share(tmpShare);
   }
 
-  activePlacement() {
-    const activeShare = this.activeShare();
-    return new Placement(activeShare.placements.find((placement, index) => (index === 1)));
+  async activePlacement() {
+    const tmpShare = await this.activeShare();
+    return tmpShare.activePlacement();
   }
 
-  activeBanner() {
-    const activePlacement = this.activePlacement();
-    return new Banner(activePlacement.banners.find((banner, index) => (index === 0)));
+  async activeBanner() {
+    const tmpPlacement = await this.activePlacement();
+    return tmpPlacement.activeBanner();
   }
 
 }

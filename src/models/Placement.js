@@ -3,6 +3,7 @@
  */
 
 import Entity from './Entity';
+import Banner from './Banner';
 
 class Placement extends Entity {
 
@@ -16,6 +17,10 @@ class Placement extends Entity {
     return this._banners;
   }
 
+  async activeBanner() {
+    const tmpBanner = await this.banners.find((banner, index) => (index === 1));
+    return new Banner(tmpBanner);
+  }
 }
 
 export default Placement;
