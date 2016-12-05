@@ -26,6 +26,9 @@ const Zone = Vue.component('zone', {
     current() {
       return new ZoneModel(this.model);
     },
+    activeShare() {
+      return this.current.activeShare();
+    },
     activePlacement() {
       return this.current.activePlacement();
     },

@@ -3,6 +3,7 @@
  */
 
 import Entity from './Entity';
+import Share from './Share';
 import Placement from './Placement';
 import Banner from './Banner';
 
@@ -11,15 +12,19 @@ class Zone extends Entity {
   constructor(zone) {
     super(zone);
 
-    this._placements = zone.placements;
+    this._shares = zone.shares;
   }
 
-  get placements() {
-    return this._placements;
+  get shares() {
+    return this._shares;
+  }
+
+  activeShare() {
+    return new Share(this.shares.find((share, index) => (index === 0)));
   }
 
   activePlacement() {
-    return new Placement(this.placements.find((placement, index) => (index === 1)));
+    return new Placement(this.activeShare.find((placement, index) => (index === 1)));
   }
 
   activeBanner() {
