@@ -29,13 +29,13 @@ const Zone = Vue.component('zone', {
       return new ZoneModel(this.model);
     },
     activeShare() {
-      return this.current.activeShare();
+      return this.current.getShareByIndex(0);
     },
     activePlacement() {
-      return this.current.activePlacement();
+      return this.current.getPlacementByIndex(0);
     },
     activeBanner() {
-      return this.current.activeBanner();
+      return this.current.getBannerByIndex(0);
     },
   },
 

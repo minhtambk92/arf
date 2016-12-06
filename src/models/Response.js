@@ -21,9 +21,14 @@ class Response {
     return this._zones;
   }
 
+  // Find zone by array index from "response.data.zones"
+  getZoneObjectByIndex(index = 0) {
+    return this.zones[index];
+  }
+
   // Find zone by id from "response.data.zones"
-  getZoneById(id) {
-    return this._zones.find(zone => zone.id === id);
+  getZoneObjectById(id) {
+    return this.zones.find(zone => zone.id === id);
   }
 
 }

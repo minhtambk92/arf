@@ -17,6 +17,10 @@ class Share extends Entity {
     return this._placements;
   }
 
+  getPlacementByIndex(index = 0) {
+    return new Placement(this.placements[index]);
+  }
+
   activePlacement() {
     const tmpPlacement = this.placements.find((placement, index) => (index === 0));
     return new Placement(tmpPlacement);

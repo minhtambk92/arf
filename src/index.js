@@ -76,7 +76,7 @@ const zoneId = '77d24611-827d-4ac6-85e7-89332626b575';
 const zone = new Zone({ // eslint-disable-line no-unused-vars
   el: document.getElementById(zoneId),
   propsData: {
-    model: response.getZoneById(zoneId),
+    model: response.getZoneObjectById(zoneId),
   },
 });
 

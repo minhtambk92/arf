@@ -17,6 +17,10 @@ class Zone extends Entity {
     return this._shares;
   }
 
+  getShareByIndex(index = 0) {
+    return new Share(this.shares[index]);
+  }
+
   activeShare() {
     const tmpShare = this.shares.find((share, index) => (index === 0));
     return new Share(tmpShare);

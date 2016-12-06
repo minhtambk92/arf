@@ -17,6 +17,10 @@ class Placement extends Entity {
     return this._banners;
   }
 
+  getBannerByIndex(index = 0) {
+    return new Placement(this.banners[index]);
+  }
+
   activeBanner() {
     const tmpBanner = this.banners.find((banner, index) => (index === 0));
     return new Banner(tmpBanner);
