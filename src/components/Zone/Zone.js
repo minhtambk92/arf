@@ -69,7 +69,11 @@ const Zone = Vue.component('zone', {
 
   },
 
-  template: '<div></div>',
+  render(h) { // eslint-disable-line no-unused-vars
+    return (
+      <div />
+    );
+  },
 
 });
 
