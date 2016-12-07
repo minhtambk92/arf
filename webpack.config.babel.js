@@ -2,9 +2,9 @@ import path from 'path';
 import webpack from 'webpack'; // eslint-disable-line import/no-extraneous-dependencies
 import yargs from 'yargs'; // eslint-disable-line import/no-extraneous-dependencies
 
-const { env } = yargs.argv;
+const { env, name } = yargs.argv;
 const isProduction = (env === 'production');
-const libraryName = 'arf';
+const libraryName = name || 'Library';
 
 const config = {
 
