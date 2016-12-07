@@ -22,7 +22,22 @@ class Placement extends Entity {
   }
 
   activeBanner() {
-    const tmpBanner = this.banners.find((banner, index) => (index === 0));
+    const randomNumber = Math.random() * 100;
+
+    const tmpBanner = this.banners.reduce((range, banner) => {
+      const nextRange = range + banner.weight;
+
+      if (typeof range === 'object') {
+        return range;
+      }
+
+      if (randomNumber >= range && randomNumber < nextRange) {
+        return Object.assign({}, banner);
+      }
+
+      return nextRange;
+    }, 0);
+
     return new Banner(tmpBanner);
   }
 }

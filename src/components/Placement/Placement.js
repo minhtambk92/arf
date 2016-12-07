@@ -22,7 +22,7 @@ const Placement = Vue.component('placement', {
     },
 
     activeBannerModel() {
-      return this.current.getBannerByIndex(0);
+      return this.current.activeBanner();
     },
   },
 

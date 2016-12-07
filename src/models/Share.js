@@ -22,7 +22,22 @@ class Share extends Entity {
   }
 
   activePlacement() {
-    const tmpPlacement = this.placements.find((placement, index) => (index === 0));
+    const randomNumber = Math.random() * 100;
+
+    const tmpPlacement = this.placements.reduce((range, placement) => {
+      const nextRange = range + placement.weight;
+
+      if (typeof range === 'object') {
+        return range;
+      }
+
+      if (randomNumber >= range && randomNumber < nextRange) {
+        return Object.assign({}, placement);
+      }
+
+      return nextRange;
+    }, 0);
+
     return new Placement(tmpPlacement);
   }
 }

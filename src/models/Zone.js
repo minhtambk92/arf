@@ -22,7 +22,22 @@ class Zone extends Entity {
   }
 
   activeShare() {
-    const tmpShare = this.shares.find((share, index) => (index === 0));
+    const randomNumber = Math.random() * 100;
+
+    const tmpShare = this.shares.reduce((range, share) => {
+      const nextRange = range + share.weight;
+
+      if (typeof range === 'object') {
+        return range;
+      }
+
+      if (randomNumber >= range && randomNumber < nextRange) {
+        return Object.assign({}, share);
+      }
+
+      return nextRange;
+    }, 0);
+
     return new Share(tmpShare);
   }
 

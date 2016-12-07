@@ -6,6 +6,7 @@ class Entity {
 
   constructor(entity) {
     this._id = entity.id;
+    this._weight = entity.weight;
     this._width = entity.width;
     this._height = entity.height;
     this._html = entity.html;
@@ -14,6 +15,10 @@ class Entity {
 
   get id() {
     return this._id;
+  }
+
+  get weight() {
+    return this._weight;
   }
 
   get width() {

@@ -10,10 +10,15 @@ class Banner extends Entity {
     super(banner);
 
     this._type = banner.type;
+    this._weight = banner.weight;
   }
 
   get type() {
     return this._type;
+  }
+
+  get weight() {
+    return this._weight;
   }
 
 }

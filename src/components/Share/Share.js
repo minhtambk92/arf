@@ -22,7 +22,7 @@ const Share = Vue.component('share', {
     },
 
     activePlacementModel() {
-      return this.current.getPlacementByIndex(1);
+      return this.current.activePlacement();
     },
   },
 

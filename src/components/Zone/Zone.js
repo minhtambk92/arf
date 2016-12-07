@@ -31,7 +31,7 @@ const Zone = Vue.component('zone', {
     },
 
     activeShareModel() {
-      return this.current.getShareByIndex(1);
+      return this.current.activeShare();
     },
   },
 
