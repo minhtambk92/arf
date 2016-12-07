@@ -2,9 +2,9 @@ import path from 'path';
 import webpack from 'webpack'; // eslint-disable-line import/no-extraneous-dependencies
 import yargs from 'yargs'; // eslint-disable-line import/no-extraneous-dependencies
 
-const env = yargs.argv.mode;
-const isProduction = (env === 'build');
-const libraryName = 'Library';
+const { env } = yargs.argv;
+const isProduction = (env === 'production');
+const libraryName = 'arf';
 
 const config = {
 
@@ -45,15 +45,9 @@ const config = {
   },
 
   plugins: [
-    ...(isProduction ? [
-      // In production plugins
-      // minify with dead-code elimination
-      new webpack.optimize.UglifyJsPlugin({
-        compress: isProduction && { warnings: false },
-      }),
-    ] : [
-      // In development plugins
-    ]),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': isProduction ? '"production"' : '"development"',
+    }),
     // optimize module ids by occurence count
     new webpack.optimize.OccurenceOrderPlugin(),
   ],
