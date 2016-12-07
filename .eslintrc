@@ -49,6 +49,7 @@
           ".jsx"
         ]
       }
-    ]
+    ],
+    "react/no-string-refs": 0
   }
 }

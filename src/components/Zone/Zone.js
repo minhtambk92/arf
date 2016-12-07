@@ -6,6 +6,7 @@
 
 import Vue from 'vue';
 import { Zone as ZoneModel } from '../../models';
+import { Share } from '../';
 
 const Zone = Vue.component('zone', {
 
@@ -28,14 +29,9 @@ const Zone = Vue.component('zone', {
     current() {
       return new ZoneModel(this.model);
     },
-    activeShare() {
+
+    activeShareModel() {
       return this.current.getShareByIndex(1);
-    },
-    activePlacement() {
-      return this.activeShare.getPlacementByIndex(1);
-    },
-    activeBanner() {
-      return this.activePlacement.getBannerByIndex(0);
     },
   },
 
@@ -46,32 +42,46 @@ const Zone = Vue.component('zone', {
   methods: {
 
     _renderToIFrame() {
-      const self = this;
-      const { width, height } = self.current;
-      const iframe = self.iframe.el;
+      const vm = this;
+      const iframe = vm.iframe.el;
 
       iframe.onload = () => {
-        iframe.width = width;
-        iframe.height = height;
-        iframe.frameBorder = self.iframe.frameBorder;
-        iframe.marginWidth = self.iframe.marginWidth;
-        iframe.marginHeight = self.iframe.marginHeight;
+        iframe.width = vm.current.width;
+        iframe.height = vm.current.height;
+        iframe.frameBorder = vm.iframe.frameBorder;
+        iframe.marginWidth = vm.iframe.marginWidth;
+        iframe.marginHeight = vm.iframe.marginHeight;
 
         iframe.contentWindow.document.open();
-        iframe.contentWindow.document.write(self.activeBanner.html);
+        iframe.contentWindow.document.write(vm.$refs.share.innerText);
         iframe.contentWindow.document.close();
       };
 
-      if (self.$el) {
-        self.$el.appendChild(iframe);
+      try {
+        vm.$el.replaceChild(iframe, vm.$refs.share);
+      } catch (error) {
+        // Do nothing on error
+        throw new Error(error);
       }
     },
 
   },
 
   render(h) { // eslint-disable-line no-unused-vars
+    const vm = this;
+
     return (
-      <div />
+      <div
+        id={vm.current.id}
+        style={{
+          width: `${vm.current.width}px`,
+          height: `${vm.current.height}px`,
+        }}
+      >
+        <span ref="share">
+          <Share model={vm.activeShareModel} />
+        </span>
+      </div>
     );
   },
 

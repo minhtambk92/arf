@@ -6,6 +6,7 @@
 
 import Vue from 'vue';
 import { Placement as PlacementModel } from '../../models';
+import { Banner } from '../';
 
 const Placement = Vue.component('placement', {
 
@@ -19,13 +20,25 @@ const Placement = Vue.component('placement', {
     current() {
       return new PlacementModel(this.model);
     },
+
+    activeBannerModel() {
+      return this.current.getBannerByIndex(0);
+    },
   },
 
   mounted() {
-    //
+    // const vm = this;
   },
 
-  template: '<div>This is an {{ id }} Placement!</div>',
+  render(h) { // eslint-disable-line no-unused-vars
+    const vm = this;
+
+    return (
+      <div id={vm.current.id}>
+        <Banner model={vm.activeBannerModel} />
+      </div>
+    );
+  },
 
 });
 

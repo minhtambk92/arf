@@ -22,10 +22,18 @@ const Banner = Vue.component('banner', {
   },
 
   mounted() {
-    //
+    // const vm = this;
   },
 
-  template: '<div></div>',
+  render(h) { // eslint-disable-line no-unused-vars
+    const vm = this;
+
+    return (
+      <div id={vm.current.id}>
+        {vm.current.html}
+      </div>
+    );
+  },
 
 });
 

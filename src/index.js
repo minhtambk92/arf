@@ -21,6 +21,7 @@ const response = new Response({
         "height": 300,
         "shares": [
           {
+            "id": "share-1",
             "width": 900,
             "height": 300,
             "placements": [
@@ -38,6 +39,7 @@ const response = new Response({
             ]
           },
           {
+            "id": "share-2",
             "width": 900,
             "height": 300,
             "placements": [

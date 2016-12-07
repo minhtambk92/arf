@@ -6,6 +6,7 @@
 
 import Vue from 'vue';
 import { Share as ShareModel } from '../../models';
+import { Placement } from '../';
 
 const Share = Vue.component('share', {
 
@@ -19,13 +20,25 @@ const Share = Vue.component('share', {
     current() {
       return new ShareModel(this.model);
     },
+
+    activePlacementModel() {
+      return this.current.getPlacementByIndex(1);
+    },
   },
 
   mounted() {
-    //
+    // const vm = this;
   },
 
-  template: '<div>This is an {{ id }} Share!</div>',
+  render(h) { // eslint-disable-line no-unused-vars
+    const vm = this;
+
+    return (
+      <div id={vm.current.id}>
+        <Placement model={vm.activePlacementModel} />
+      </div>
+    );
+  },
 
 });
 
