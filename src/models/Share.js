@@ -40,6 +40,7 @@ class Share extends Entity {
 
     return new Placement(tmpPlacement);
   }
+
 }
 
 export default Share;

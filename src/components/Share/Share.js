@@ -38,7 +38,10 @@ const Share = Vue.component('share', {
     const vm = this;
 
     return (
-      <div id={vm.current.id}>
+      <div
+        id={vm.current.id}
+        style={vm.current.css}
+      >
         {vm.activePlacementsModels.map(placement => (
           <Placement model={placement} />
         ))}

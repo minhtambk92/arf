@@ -98,7 +98,13 @@ const response = new Response({
                   {
                     "id": "50431e1c-2c59-4139-9ee0-c20f7dec643c",
                     "html": "B[0] of P[0] of S[2]",
-                    "weight": 100,
+                    "weight": 50,
+                    "type": "cpd"
+                  },
+                  {
+                    "id": "50431e1c-2c59-4139-9ee0-c20f7dec643c",
+                    "html": "B[1] of P[0] of S[2]",
+                    "weight": 50,
                     "type": "cpd"
                   }
                 ]

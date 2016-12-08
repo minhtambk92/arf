@@ -40,6 +40,7 @@ class Placement extends Entity {
 
     return new Banner(tmpBanner);
   }
+
 }
 
 export default Placement;
