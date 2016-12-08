@@ -24,6 +24,12 @@ const Banner = Vue.component('banner', {
     },
   },
 
+  data() {
+    return {
+      isRendered: false,
+    };
+  },
+
   computed: {
     current() {
       return new BannerModel(this.model);
@@ -38,17 +44,23 @@ const Banner = Vue.component('banner', {
     _renderToIFrame() {
       const vm = this;
       const iframe = vm.iframe.el;
+      console.log(this.current); // eslint-disable-line
 
       iframe.onload = () => {
-        iframe.width = vm.current.width;
-        iframe.height = vm.current.height;
-        iframe.frameBorder = vm.iframe.frameBorder;
-        iframe.marginWidth = vm.iframe.marginWidth;
-        iframe.marginHeight = vm.iframe.marginHeight;
+        if (vm.$data.isRendered === false) {
+          iframe.width = vm.current.width;
+          iframe.height = vm.current.height;
+          iframe.frameBorder = vm.iframe.frameBorder;
+          iframe.marginWidth = vm.iframe.marginWidth;
+          iframe.marginHeight = vm.iframe.marginHeight;
+          iframe.scrolling = 'no'; // Prevent iframe body scrolling
 
-        iframe.contentWindow.document.open();
-        iframe.contentWindow.document.write(vm.current.html);
-        iframe.contentWindow.document.close();
+          iframe.contentWindow.document.open();
+          iframe.contentWindow.document.write(vm.current.html);
+          iframe.contentWindow.document.close();
+
+          vm.$data.isRendered = true; // Prevent AppleWebKit iframe.onload loop
+        }
       };
 
       try {
@@ -67,11 +79,8 @@ const Banner = Vue.component('banner', {
       <div
         id={vm.current.id}
         class="arf-banner"
-        style={{
-          overflow: 'hidden',
-        }}
       >
-        <div ref="banner" />
+        <div ref="banner">{vm.current.html}</div>
       </div>
     );
   },
