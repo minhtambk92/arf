@@ -36,6 +36,7 @@ const Placement = Vue.component('placement', {
         style={{
           width: `${vm.current.width}px`,
           height: `${vm.current.height}px`,
+          overflow: 'hidden',
         }}
       >
         <Banner model={vm.activeBannerModel} />

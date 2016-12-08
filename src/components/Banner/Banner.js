@@ -67,6 +67,9 @@ const Banner = Vue.component('banner', {
       <div
         id={vm.current.id}
         class="arf-banner"
+        style={{
+          overflow: 'hidden',
+        }}
       >
         <div ref="banner" />
       </div>

@@ -59,6 +59,9 @@ const Share = Vue.component('share', {
       <div
         id={vm.current.id}
         class="arf-share"
+        style={{
+          overflow: 'hidden',
+        }}
       >
         {vm.activePlacementsModels.map(placement => (
           <Placement model={placement} />
