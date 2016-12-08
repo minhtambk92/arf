@@ -9,16 +9,11 @@ class Banner extends Entity {
   constructor(banner) {
     super(banner);
 
-    this._type = banner.type;
-    this._weight = banner.weight;
+    this._relative = banner.relative;
   }
 
-  get type() {
-    return this._type;
-  }
-
-  get weight() {
-    return this._weight;
+  get relative() {
+    return this._relative;
   }
 
 }

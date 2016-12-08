@@ -35,38 +35,6 @@ const Zone = Vue.component('zone', {
     },
   },
 
-  mounted() {
-    this._renderToIFrame();
-  },
-
-  methods: {
-
-    _renderToIFrame() {
-      const vm = this;
-      const iframe = vm.iframe.el;
-
-      iframe.onload = () => {
-        iframe.width = vm.current.width;
-        iframe.height = vm.current.height;
-        iframe.frameBorder = vm.iframe.frameBorder;
-        iframe.marginWidth = vm.iframe.marginWidth;
-        iframe.marginHeight = vm.iframe.marginHeight;
-
-        iframe.contentWindow.document.open();
-        iframe.contentWindow.document.write(vm.$refs.share.innerText);
-        iframe.contentWindow.document.close();
-      };
-
-      try {
-        vm.$el.replaceChild(iframe, vm.$refs.share);
-      } catch (error) {
-        // Do nothing on error
-        throw new Error(error);
-      }
-    },
-
-  },
-
   render(h) { // eslint-disable-line no-unused-vars
     const vm = this;
 
@@ -78,9 +46,7 @@ const Zone = Vue.component('zone', {
           height: `${vm.current.height}px`,
         }}
       >
-        <span ref="share">
-          <Share model={vm.activeShareModel} />
-        </span>
+        <Share model={vm.activeShareModel} />
       </div>
     );
   },

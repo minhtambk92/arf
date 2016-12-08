@@ -7,10 +7,12 @@ class Entity {
   constructor(entity) {
     this._id = entity.id;
     this._weight = entity.weight;
+    this._type = entity.type;
     this._width = entity.width;
     this._height = entity.height;
     this._html = entity.html;
     this._css = entity.css;
+    this._cpm = entity.cpm;
   }
 
   get id() {
@@ -19,6 +21,10 @@ class Entity {
 
   get weight() {
     return this._weight;
+  }
+
+  get type() {
+    return this._type;
   }
 
   get width() {
@@ -35,6 +41,10 @@ class Entity {
 
   get css() {
     return this._css;
+  }
+
+  get cpm() {
+    return this._cpm;
   }
 
 }

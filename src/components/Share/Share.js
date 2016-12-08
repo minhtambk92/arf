@@ -21,8 +21,12 @@ const Share = Vue.component('share', {
       return new ShareModel(this.model);
     },
 
-    activePlacementModel() {
-      return this.current.activePlacement();
+    activePlacementsModels() {
+      if (this.current.type === 'multiple') {
+        return this.current.placements;
+      }
+
+      return [this.current.activePlacement()];
     },
   },
 
@@ -35,7 +39,9 @@ const Share = Vue.component('share', {
 
     return (
       <div id={vm.current.id}>
-        <Placement model={vm.activePlacementModel} />
+        {vm.activePlacementsModels.map(placement => (
+          <Placement model={placement} />
+        ))}
       </div>
     );
   },
