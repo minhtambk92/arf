@@ -97,12 +97,16 @@ const response = new Response({
                 "banners": [
                   {
                     "id": "50431e1c-2c59-4139-9ee0-c20f7dec643c",
+                    "width": 400,
+                    "height": 300,
                     "html": "B[0] of P[0] of S[2]",
                     "weight": 50,
                     "type": "cpd"
                   },
                   {
                     "id": "50431e1c-2c59-4139-9ee0-c20f7dec643c",
+                    "width": 400,
+                    "height": 300,
                     "html": "B[1] of P[0] of S[2]",
                     "weight": 50,
                     "type": "cpd"
@@ -117,12 +121,16 @@ const response = new Response({
                 "banners": [
                   {
                     "id": "50431e1c-45c2-6231-9ee0-c20f7gwf643c",
+                    "width": 400,
+                    "height": 300,
                     "html": "B[0] of P[1] of S[2]",
                     "weight": 50,
                     "type": "cpd"
                   },
                   {
                     "id": "49cdbffb-5c96-4605-9dd9-555fd4347a8a",
+                    "width": 400,
+                    "height": 300,
                     "html": "B[1] of P[1] of S[2]",
                     "type": "cpd",
                     "weight": 50
