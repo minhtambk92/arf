@@ -31,7 +31,25 @@ const Share = Vue.component('share', {
   },
 
   mounted() {
-    // const vm = this;
+    this._attachStyles();
+  },
+
+  methods: {
+    _attachStyles() {
+      const head = document.head || document.getElementsByTagName('head')[0];
+      const style = document.createElement('style');
+
+      style.id = this.current.id;
+      style.type = 'text/css';
+
+      if (style.styleSheet) {
+        style.styleSheet.cssText = this.current.css;
+      } else {
+        style.appendChild(document.createTextNode(this.current.css));
+      }
+
+      head.appendChild(style);
+    },
   },
 
   render(h) { // eslint-disable-line no-unused-vars
@@ -41,7 +59,6 @@ const Share = Vue.component('share', {
       <div
         id={vm.current.id}
         class="arf-share"
-        style={vm.current.css}
       >
         {vm.activePlacementsModels.map(placement => (
           <Placement model={placement} />

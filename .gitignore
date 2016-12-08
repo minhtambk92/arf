@@ -34,4 +34,3 @@ build
 
 # MacOS file
 .DS_Store
-/src/index.js
