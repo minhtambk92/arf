@@ -44,7 +44,6 @@ const Banner = Vue.component('banner', {
     _renderToIFrame() {
       const vm = this;
       const iframe = vm.iframe.el;
-      console.log(this.current); // eslint-disable-line
 
       iframe.onload = () => {
         if (vm.$data.isRendered === false) {

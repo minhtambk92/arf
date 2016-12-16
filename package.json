@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run develop",
     "develop": "webpack --progress --colors --watch --env=development",
-    "build": "webpack --env=production --optimize-minimize --optimize-dedupe",
+    "build": "webpack --env=production --optimize-minimize",
     "test": "mocha --compilers js:babel-core/register -r jsdom-global/register --colors -w ./test/*.spec.js"
   },
   "devDependencies": {
