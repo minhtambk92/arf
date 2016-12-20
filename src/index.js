@@ -13,9 +13,9 @@ import {
 
 /* eslint-disable */
 const response = new Response("{{zoneDataObject}}");
+const zoneId = '{{zoneId}}';
 /* eslint-enable */
 
-const zoneId = '{{zoneId}}';
 const zone = new Zone({ // eslint-disable-line no-unused-vars
   el: document.getElementById(zoneId),
   propsData: {

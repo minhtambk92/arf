@@ -22,11 +22,7 @@ const Share = Vue.component('share', {
     },
 
     activePlacementsModels() {
-      if (this.current.type === 'multiple') {
-        return this.current.placements;
-      }
-
-      return [this.current.activePlacement()];
+      return this.current.activePlacements;
     },
   },
 
@@ -35,6 +31,10 @@ const Share = Vue.component('share', {
   },
 
   methods: {
+    /**
+     * Attach share's style to header
+     * @private
+     */
     _attachStyles() {
       const head = document.head || document.getElementsByTagName('head')[0];
       const style = document.createElement('style');

@@ -41,6 +41,10 @@ const Banner = Vue.component('banner', {
   },
 
   methods: {
+    /**
+     * Wrap ads by an iframe
+     * @private
+     */
     _renderToIFrame() {
       const vm = this;
       const iframe = vm.iframe.el;
@@ -63,9 +67,8 @@ const Banner = Vue.component('banner', {
       };
 
       try {
-        vm.$el.replaceChild(iframe, vm.$refs.banner);
+        vm.$el.replaceChild(iframe, vm.$refs.banner); // Do the trick
       } catch (error) {
-        // Do nothing on error
         throw new Error(error);
       }
     },

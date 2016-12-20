@@ -14,13 +14,13 @@ class Share extends Entity {
   }
 
   get placements() {
-    return this._placements;
+    return this._placements.map(placement => new Placement(placement));
   }
 
-  getPlacementByIndex(index = 0) {
-    return new Placement(this.placements[index]);
-  }
-
+  /**
+   * Pull out one placement randomly by its "weight"
+   * @returns {Placement}
+   */
   activePlacement() {
     const randomNumber = Math.random() * 100;
 
@@ -39,6 +39,18 @@ class Share extends Entity {
     }, 0);
 
     return new Placement(tmpPlacement);
+  }
+
+  /**
+   * Check for share type then return array of placements
+   * @returns [Placement]
+   */
+  activePlacements() {
+    if (this.type === 'multiple') {
+      return this.placements;
+    }
+
+    return [this.activePlacement()];
   }
 
 }

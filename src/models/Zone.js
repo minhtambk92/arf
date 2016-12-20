@@ -14,13 +14,13 @@ class Zone extends Entity {
   }
 
   get shares() {
-    return this._shares;
+    return this._shares.map(share => new Share(share));
   }
 
-  getShareByIndex(index = 0) {
-    return new Share(this.shares[index]);
-  }
-
+  /**
+   * Get a active share randomly by its weight
+   * @return {Share}
+   */
   activeShare() {
     const randomNumber = Math.random() * 100;
 
@@ -41,14 +41,22 @@ class Zone extends Entity {
     return new Share(tmpShare);
   }
 
-  activePlacement() {
+  /**
+   * Get array of active placements
+   * @returns [Placement]
+   */
+  activePlacements() {
     const tmpShare = this.activeShare();
-    return tmpShare.activePlacement();
+    return tmpShare.activePlacements();
   }
 
+  /**
+   * Get array of active banners from all placements
+   * @return [Banner]
+   */
   activeBanner() {
-    const tmpPlacement = this.activePlacement();
-    return tmpPlacement.activeBanner();
+    const tmpPlacements = this.activePlacements();
+    return tmpPlacements.map(placement => placement.activeBanner());
   }
 
 }

@@ -14,13 +14,13 @@ class Placement extends Entity {
   }
 
   get banners() {
-    return this._banners;
+    return this._banners.map(banner => new Banner(banner));
   }
 
-  getBannerByIndex(index = 0) {
-    return new Placement(this.banners[index]);
-  }
-
+  /**
+   * Get active banner by its weight
+   * @returns {Banner}
+   */
   activeBanner() {
     const randomNumber = Math.random() * 100;
 

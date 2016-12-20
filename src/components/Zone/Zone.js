@@ -14,15 +14,6 @@ const Zone = Vue.component('zone', {
     model: {
       type: Object,
     },
-    iframe: {
-      type: Object,
-      default: () => ({
-        el: document.createElement('iframe'),
-        frameBorder: 0,
-        marginWidth: 0,
-        marginHeight: 0,
-      }),
-    },
   },
 
   computed: {
