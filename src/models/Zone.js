@@ -18,13 +18,22 @@ class Zone extends Entity {
   }
 
   /**
+   * Get all shares from this zone
+   * @returns [Share]
+   */
+  getAllShares() {
+    return this.shares.map(share => new Share(share));
+  }
+
+  /**
    * Get a active share randomly by its weight
    * @return {Share}
    */
   activeShare() {
     const randomNumber = Math.random() * 100;
+    const allShares = this.getAllShares();
 
-    const tmpShare = this.shares.reduce((range, share) => {
+    return allShares.reduce((range, share) => {
       const nextRange = range + share.weight;
 
       if (typeof range === 'object') {
@@ -32,13 +41,11 @@ class Zone extends Entity {
       }
 
       if (randomNumber >= range && randomNumber < nextRange) {
-        return Object.assign({}, share);
+        return share;
       }
 
       return nextRange;
     }, 0);
-
-    return new Share(tmpShare);
   }
 
   /**
@@ -46,8 +53,8 @@ class Zone extends Entity {
    * @returns [Placement]
    */
   activePlacements() {
-    const tmpShare = this.activeShare();
-    return tmpShare.activePlacements();
+    const activeShareModel = this.activeShare();
+    return activeShareModel.activePlacements();
   }
 
   /**
@@ -55,8 +62,8 @@ class Zone extends Entity {
    * @return [Banner]
    */
   activeBanner() {
-    const tmpPlacements = this.activePlacements();
-    return tmpPlacements.map(placement => placement.activeBanner());
+    const activePlacementsModels = this.activePlacements();
+    return activePlacementsModels.map(placement => placement.activeBanner());
   }
 
 }

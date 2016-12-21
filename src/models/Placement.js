@@ -18,13 +18,22 @@ class Placement extends Entity {
   }
 
   /**
+   * Get all banners from this placement
+   * @returns [Banner]
+   */
+  getAllBanners() {
+    return this.banners.map(banner => new Banner(banner));
+  }
+
+  /**
    * Get active banner by its weight
    * @returns {Banner}
    */
   activeBanner() {
     const randomNumber = Math.random() * 100;
+    const allBanners = this.getAllBanners();
 
-    const tmpBanner = this.banners.reduce((range, banner) => {
+    return allBanners.reduce((range, banner) => {
       const nextRange = range + banner.weight;
 
       if (typeof range === 'object') {
@@ -32,13 +41,11 @@ class Placement extends Entity {
       }
 
       if (randomNumber >= range && randomNumber < nextRange) {
-        return Object.assign({}, banner);
+        return banner;
       }
 
       return nextRange;
     }, 0);
-
-    return new Banner(tmpBanner);
   }
 
 }

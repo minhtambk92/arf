@@ -2,8 +2,6 @@
  * Created by Manhhailua on 11/22/16.
  */
 
-/* eslint-disable import/no-extraneous-dependencies */
-
 class Response {
 
   constructor(response) {
@@ -11,22 +9,27 @@ class Response {
     this._zones = this._data.zones;
   }
 
-  // Output response "response.data"
+  /**
+   * Output response "response.data"
+   * @return {Object}
+   */
   get model() {
     return this._data;
   }
 
-  // Output all "response.data.zones"
+  /**
+   * Output all "response.data.zones"
+   * @return {Array}
+   */
   get zones() {
     return this._zones;
   }
 
-  // Find zone by array index from "response.data.zones"
-  getZoneObjectByIndex(index = 0) {
-    return this.zones[index];
-  }
-
-  // Find zone by id from "response.data.zones"
+  /**
+   * Find zone by id from "response.data.zones"
+   * @param id
+   * @return {Object}
+   */
   getZoneObjectById(id) {
     return this.zones.find(zone => zone.id === id);
   }
