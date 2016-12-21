@@ -21,7 +21,7 @@ class Zone extends Entity {
    * Get all shares from this zone
    * @returns [Share]
    */
-  getAllShares() {
+  get allShares() {
     return this.shares.map(share => new Share(share));
   }
 
@@ -31,9 +31,8 @@ class Zone extends Entity {
    */
   activeShare() {
     const randomNumber = Math.random() * 100;
-    const allShares = this.getAllShares();
 
-    return allShares.reduce((range, share) => {
+    return this.allShares.reduce((range, share) => {
       const nextRange = range + share.weight;
 
       if (typeof range === 'object') {

@@ -21,7 +21,7 @@ class Share extends Entity {
    * Get all placements from this share
    * @returns [Placement]
    */
-  getAllPlacements() {
+  get allPlacements() {
     return this.placements.map(placement => new Placement(placement));
   }
 
@@ -31,9 +31,8 @@ class Share extends Entity {
    */
   activePlacement() {
     const randomNumber = Math.random() * 100;
-    const allPlacements = this.getAllPlacements();
 
-    return allPlacements.reduce((range, placement) => {
+    return this.allPlacements.reduce((range, placement) => {
       const nextRange = range + placement.weight;
 
       if (typeof range === 'object') {
@@ -54,7 +53,7 @@ class Share extends Entity {
    */
   activePlacements() {
     if (this.type === 'multiple') {
-      return this.getAllPlacements();
+      return this.allPlacements;
     }
 
     return [this.activePlacement()];

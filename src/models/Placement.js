@@ -21,7 +21,7 @@ class Placement extends Entity {
    * Get all banners from this placement
    * @returns [Banner]
    */
-  getAllBanners() {
+  get allBanners() {
     return this.banners.map(banner => new Banner(banner));
   }
 
@@ -31,9 +31,8 @@ class Placement extends Entity {
    */
   activeBanner() {
     const randomNumber = Math.random() * 100;
-    const allBanners = this.getAllBanners();
 
-    return allBanners.reduce((range, banner) => {
+    return this.allBanners.reduce((range, banner) => {
       const nextRange = range + banner.weight;
 
       if (typeof range === 'object') {
