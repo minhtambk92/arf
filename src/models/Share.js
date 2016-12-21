@@ -14,7 +14,7 @@ class Share extends Entity {
   }
 
   get placements() {
-    return this._placements.map(placement => new Placement(placement));
+    return this._placements;
   }
 
   /**

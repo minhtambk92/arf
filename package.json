@@ -5,8 +5,8 @@
   "main": "./build/Library.js",
   "scripts": {
     "start": "npm run develop",
-    "develop": "webpack --progress --colors --watch --env=development",
-    "build": "webpack --env=production --optimize-minimize",
+    "develop": "webpack --env=development --progress --colors --watch",
+    "build": "webpack --env=production --progress --colors",
     "test": "mocha --compilers js:babel-core/register -r jsdom-global/register --colors -w ./test/*.spec.js"
   },
   "devDependencies": {

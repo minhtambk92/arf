@@ -14,7 +14,7 @@ class Zone extends Entity {
   }
 
   get shares() {
-    return this._shares.map(share => new Share(share));
+    return this._shares;
   }
 
   /**

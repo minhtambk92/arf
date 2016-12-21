@@ -14,7 +14,7 @@ class Placement extends Entity {
   }
 
   get banners() {
-    return this._banners.map(banner => new Banner(banner));
+    return this._banners;
   }
 
   /**

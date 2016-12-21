@@ -11,10 +11,11 @@ import {
   Zone,
 } from './components';
 
-/* eslint-disable */
-const response = new Response("{{zoneDataObject}}");
-const zoneId = '{{zoneId}}';
-/* eslint-enable */
+/**
+ * In production mode, webpack will force double quotes to string
+ */
+const response = new Response("{{zoneDataObject}}"); // eslint-disable-line quotes
+const zoneId = "{{zoneId}}"; // eslint-disable-line quotes
 
 const zone = new Zone({ // eslint-disable-line no-unused-vars
   el: document.getElementById(zoneId),

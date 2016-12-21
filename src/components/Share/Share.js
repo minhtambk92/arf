@@ -22,12 +22,12 @@ const Share = Vue.component('share', {
     },
 
     activePlacementsModels() {
-      return this.current.activePlacements;
+      return this.current.activePlacements();
     },
   },
 
   mounted() {
-    this._attachStyles();
+    // this._attachStyles();
   },
 
   methods: {
@@ -60,6 +60,7 @@ const Share = Vue.component('share', {
         id={vm.current.id}
         class="arf-share"
       >
+        <style scoped>{vm.current.css}</style>
         {vm.activePlacementsModels.map(placement => (
           <Placement model={placement} />
         ))}

@@ -48,6 +48,9 @@ const config = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': isProduction ? '"production"' : '"development"',
     }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: isProduction,
+    }),
     // optimize module ids by occurence count
     new webpack.optimize.OccurenceOrderPlugin(),
   ],
