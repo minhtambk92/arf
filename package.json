@@ -1,7 +1,7 @@
 {
-  "name": "webpack-library-starter",
-  "version": "0.1.3",
-  "description": "Produce universal library with webpack and es6",
+  "name": "ads-render",
+  "version": "0.2.0",
+  "description": "Advertisement Rendering Framework (ARF)",
   "main": "./build/Library.js",
   "scripts": {
     "start": "npm run develop",
@@ -40,7 +40,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/krasimir/webpack-library-starter.git"
+    "url": "https://github.com/manhhailua/ads-render.git"
   },
   "keywords": [
     "webpack",
@@ -51,10 +51,10 @@
     "umd",
     "commonjs"
   ],
-  "author": "Krasimir Tsonev",
+  "author": "Manhhailua",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/krasimir/webpack-library-starter/issues"
+    "url": "https://github.com/manhhailua/ads-render/issues"
   },
-  "homepage": "https://github.com/krasimir/webpack-library-starter"
+  "homepage": "https://github.com/manhhailua/ads-render"
 }
