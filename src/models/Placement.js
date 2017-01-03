@@ -13,6 +13,10 @@ class Placement extends Entity {
     this._banners = placement.banners;
   }
 
+  get id() {
+    return `placement-${super.id}`;
+  }
+
   get banners() {
     return this._banners;
   }

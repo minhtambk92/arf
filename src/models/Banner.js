@@ -12,6 +12,10 @@ class Banner extends Entity {
     this._relative = banner.relative;
   }
 
+  get id() {
+    return `banner-${super.id}`;
+  }
+
   get relative() {
     return this._relative;
   }

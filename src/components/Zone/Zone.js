@@ -18,7 +18,7 @@ const Zone = Vue.component('zone', {
 
   computed: {
     current() {
-      return new ZoneModel(this.model);
+      return (this.model instanceof ZoneModel) ? this.model : new ZoneModel(this.model);
     },
 
     activeShareModel() {

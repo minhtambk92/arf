@@ -32,7 +32,7 @@ const Banner = Vue.component('banner', {
 
   computed: {
     current() {
-      return new BannerModel(this.model);
+      return (this.model instanceof BannerModel) ? this.model : new BannerModel(this.model);
     },
   },
 

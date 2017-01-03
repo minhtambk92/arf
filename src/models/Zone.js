@@ -13,6 +13,10 @@ class Zone extends Entity {
     this._shares = zone.shares;
   }
 
+  get id() {
+    return `zone-${super.id}`;
+  }
+
   get shares() {
     return this._shares;
   }

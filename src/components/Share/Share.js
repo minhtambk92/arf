@@ -18,7 +18,7 @@ const Share = Vue.component('share', {
 
   computed: {
     current() {
-      return new ShareModel(this.model);
+      return (this.model instanceof ShareModel) ? this.model : new ShareModel(this.model);
     },
 
     activePlacementsModels() {
@@ -27,7 +27,7 @@ const Share = Vue.component('share', {
   },
 
   mounted() {
-    // this._attachStyles();
+    this._attachStyles();
   },
 
   methods: {
@@ -39,13 +39,15 @@ const Share = Vue.component('share', {
       const head = document.head || document.getElementsByTagName('head')[0];
       const style = document.createElement('style');
 
-      style.id = this.current.id;
-      style.type = 'text/css';
+      // style.id = this.current.id;
+      style.type = 'text/less';
+
+      const outputCss = `#${this.current.id} {${this.current.css}}`;
 
       if (style.styleSheet) {
-        style.styleSheet.cssText = this.current.css;
+        style.styleSheet.cssText = outputCss;
       } else {
-        style.appendChild(document.createTextNode(this.current.css));
+        style.appendChild(document.createTextNode(outputCss));
       }
 
       head.appendChild(style);
@@ -60,7 +62,6 @@ const Share = Vue.component('share', {
         id={vm.current.id}
         class="arf-share"
       >
-        <style scoped>{vm.current.css}</style>
         {vm.activePlacementsModels.map(placement => (
           <Placement model={placement} />
         ))}

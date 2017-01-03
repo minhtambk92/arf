@@ -13,6 +13,10 @@ class Share extends Entity {
     this._placements = share.placements;
   }
 
+  get id() {
+    return `share-${super.id}`;
+  }
+
   get placements() {
     return this._placements;
   }

@@ -18,7 +18,7 @@ const Placement = Vue.component('placement', {
 
   computed: {
     current() {
-      return new PlacementModel(this.model);
+      return (this.model instanceof PlacementModel) ? this.model : new PlacementModel(this.model);
     },
 
     activeBannerModel() {
