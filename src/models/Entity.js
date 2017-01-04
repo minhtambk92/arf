@@ -11,7 +11,7 @@ class Entity {
     this._width = entity.width;
     this._height = entity.height;
     this._html = entity.html;
-    this._css = entity.css;
+    this._css = entity.compiledCss || entity.outputCss || entity.css;
     this._cpm = entity.cpm;
   }
 

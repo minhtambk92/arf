@@ -26,7 +26,8 @@ const Share = Vue.component('share', {
     },
   },
 
-  mounted() {
+  beforeMount() {
+    // Attach styles before rendering for better ads displaying performances
     this._attachStyles();
   },
 
@@ -35,19 +36,17 @@ const Share = Vue.component('share', {
      * Attach share's style to header
      * @private
      */
-    _attachStyles() {
+    async _attachStyles() {
       const head = document.head || document.getElementsByTagName('head')[0];
       const style = document.createElement('style');
 
-      // style.id = this.current.id;
-      style.type = 'text/less';
-
-      const outputCss = `#${this.current.id} {${this.current.css}}`;
+      style.id = `style-${this.current.id}`;
+      style.type = 'text/css';
 
       if (style.styleSheet) {
-        style.styleSheet.cssText = outputCss;
+        style.styleSheet.cssText = this.current.css;
       } else {
-        style.appendChild(document.createTextNode(outputCss));
+        style.appendChild(document.createTextNode(this.current.css));
       }
 
       head.appendChild(style);

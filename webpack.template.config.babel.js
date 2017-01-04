@@ -2,17 +2,16 @@
  * Created by manhhailua on 1/4/17.
  */
 
-import path from 'path';
 import webpack from 'webpack';
 import yargs from 'yargs';
 
 const { env, name } = yargs.argv;
 const isProduction = (env === 'production');
-const libraryName = name || 'library';
+const libraryName = name || 'template';
 
 const config = {
 
-  entry: `${__dirname}/src/index.js`,
+  entry: `${__dirname}/src/template.js`,
 
   devtool: 'source-map',
 
@@ -42,25 +41,11 @@ const config = {
     ],
   },
 
-  resolve: {
-    alias: {
-      vue$: `${__dirname}/node_modules/vue/dist/vue.common.js`,
-    },
-    root: path.resolve('./src'),
-    extensions: ['', '.js'],
-  },
-
   plugins: [
-    // new webpack.DefinePlugin({
-    //   'process.env.NODE_ENV': isProduction ? '"production"' : '"development"',
-    // }),
-    ...isProduction ? [
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: true,
-        },
-      }),
-    ] : [],
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': isProduction ? '"production"' : '"development"',
+    }),
+    ...isProduction ? [new webpack.optimize.UglifyJsPlugin({ compress: { warnings: true } })] : [],
     // optimize module ids by occurence count
     new webpack.optimize.OccurenceOrderPlugin(),
   ],

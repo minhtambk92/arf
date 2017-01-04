@@ -4,29 +4,36 @@
 
 /* eslint-disable import/prefer-default-export */
 
-import { Response } from './models';
-import {
-  Banner,
-  Placement,
-  Zone,
-} from './components';
+// Models
+import Response from './models/Response';
 
-/**
- * In production mode, webpack will force double quotes to string
- */
-const response = new Response("{{zoneDataObject}}"); // eslint-disable-line quotes
-const zoneId = "{{zoneId}}"; // eslint-disable-line quotes
+// Arf Components
+import Zone from './components/Zone';
+import Share from './components/Share';
+import Placement from './components/Placement';
+import Banner from './components/Banner';
 
-const zone = new Zone({ // eslint-disable-line no-unused-vars
-  el: document.getElementById(zoneId),
-  propsData: {
-    model: response.getZoneObjectById(zoneId),
-  },
-});
-
+// Named exports
 export {
-  Response,
-  Banner,
-  Placement,
-  Zone,
+  Response as ArfResponse,
+  Zone as ArfZone,
+  Share as ArfShare,
+  Placement as ArfPlacement,
+  Banner as ArfBanner,
 };
+
+// Default export
+const Arf = {
+  Response,
+  Zone,
+  Share,
+  Placement,
+  Banner,
+};
+
+// Make Arf to be global
+if (!window.Arf) {
+  Object.assign(window, { Arf });
+}
+
+export default Arf;
