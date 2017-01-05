@@ -6,7 +6,7 @@ import path from 'path';
 import webpack from 'webpack';
 import yargs from 'yargs';
 
-const { env, name } = yargs.argv;
+const { env, name, release } = yargs.argv;
 const isProduction = (env === 'production');
 const libraryName = name || 'Library';
 
@@ -52,7 +52,7 @@ const config = {
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': isProduction ? '"production"' : '"development"',
+      'process.env.NODE_ENV': (isProduction && release) ? '"production"' : '"development"',
     }),
     ...isProduction ? [new webpack.optimize.UglifyJsPlugin({ compress: { warnings: true } })] : [],
     // optimize module ids by occurence count
