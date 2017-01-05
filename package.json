@@ -18,6 +18,7 @@
     "babel-helper-vue-jsx-merge-props": "latest",
     "babel-loader": "latest",
     "babel-plugin-syntax-jsx": "latest",
+    "babel-plugin-transform-runtime": "^6.15.0",
     "babel-plugin-transform-vue-jsx": "latest",
     "babel-polyfill": "latest",
     "babel-preset-latest": "latest",

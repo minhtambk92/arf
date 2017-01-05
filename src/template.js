@@ -2,14 +2,17 @@
  * Created by manhhailua on 1/4/17.
  */
 
-/* global Response, Zone */
+/* global Arf */
 
 const script = document.createElement('script');
 script.type = 'text/javascript';
 script.src = '//corejs.manhhailua.com/build/Arf.min.js';
-document.getElementsByTagName('body')[0].appendChild(script);
 
-script.onload = () => {
+if (window.Arf === 'undefined' || !Object.prototype.hasOwnProperty.call(window, 'Arf')) {
+  document.getElementsByTagName('body')[0].appendChild(script);
+}
+
+function renderAds() {
   /**
    * In production mode, webpack will force double quotes to string
    */
@@ -24,4 +27,6 @@ script.onload = () => {
       model: response.getZoneObjectById(zoneId),
     },
   });
-};
+}
+
+script.onload = renderAds;
