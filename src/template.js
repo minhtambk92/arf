@@ -6,7 +6,7 @@
 
 const script = document.createElement('script');
 script.type = 'text/javascript';
-script.src = '//corejs.manhhailua.com/build/Arf.min.js';
+script.src = '//corejs.manhhailua.com/build/Arf.build.js';
 
 if (window.Arf === 'undefined' || !Object.prototype.hasOwnProperty.call(window, 'Arf')) {
   document.getElementsByTagName('body')[0].appendChild(script);

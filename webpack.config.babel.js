@@ -11,12 +11,12 @@ const isProduction = (env === 'production');
 const libraryName = name || 'Library';
 let libraryFileName = '';
 
-if (isProduction && !release) {
-  libraryFileName = `${libraryName}.min.js`;
-} else if (isProduction && release) {
+if (!isProduction && !release) {
+  libraryFileName = `${libraryName}.js`;
+} else if (isProduction && !release) {
   libraryFileName = `${libraryName}.build.js`;
 } else {
-  libraryFileName = `${libraryName}.js`;
+  libraryFileName = `${libraryName}.min.js`;
 }
 
 const config = {
