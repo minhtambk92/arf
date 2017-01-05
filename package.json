@@ -6,9 +6,9 @@
   "scripts": {
     "start": "npm run develop",
     "develop-template": "webpack --config=./webpack.template.config.babel.js --env=development --progress --colors --watch",
-    "build-template": "webpack --config=./webpack.template.config.babel.js --env=production --progress --colors",
+    "release-template": "webpack --config=./webpack.template.config.babel.js --env=production --progress --colors",
     "develop": "webpack --config=./webpack.config.babel.js --env=development --progress --colors --watch --name=Arf",
-    "build": "webpack --config=./webpack.config.babel.js --env=production --progress --colors --name=Arf",
+    "build": "webpack --config=./webpack.config.babel.js --env=production --progress --colors --watch --name=Arf",
     "release": "webpack --config=./webpack.config.babel.js --env=production --progress --colors --name=Arf --release",
     "test": "mocha --compilers js:babel-core/register -r jsdom-global/register --colors -w ./test/*.spec.js"
   },
