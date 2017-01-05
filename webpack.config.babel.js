@@ -9,6 +9,15 @@ import yargs from 'yargs';
 const { env, name, release } = yargs.argv;
 const isProduction = (env === 'production');
 const libraryName = name || 'Library';
+let libraryFileName = '';
+
+if (isProduction && !release) {
+  libraryFileName = `${libraryName}.min.js`;
+} else if (isProduction && release) {
+  libraryFileName = `${libraryName}.build.js`;
+} else {
+  libraryFileName = `${libraryName}.js`;
+}
 
 const config = {
 
@@ -18,7 +27,7 @@ const config = {
 
   output: {
     path: `${__dirname}/build`,
-    filename: isProduction ? `${libraryName}.min.js` : `${libraryName}.js`,
+    filename: libraryFileName,
     library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true,
