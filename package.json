@@ -32,7 +32,6 @@
     "eslint-plugin-react": "latest",
     "jsdom": "latest",
     "jsdom-global": "latest",
-    "less": "latest",
     "lodash": "latest",
     "mocha": "latest",
     "vue": "latest",
