@@ -15,25 +15,9 @@ import Banner from './components/Banner';
 
 // Named exports
 export {
-  Response as ArfResponse,
-  Zone as ArfZone,
-  Share as ArfShare,
-  Placement as ArfPlacement,
-  Banner as ArfBanner,
-};
-
-// Default export
-const Arf = {
   Response,
   Zone,
   Share,
   Placement,
   Banner,
 };
-
-// Make Arf to be global
-if (!window.Arf) {
-  Object.assign(window, { Arf });
-}
-
-export default Arf;

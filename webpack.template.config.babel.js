@@ -7,7 +7,7 @@ import yargs from 'yargs';
 
 const { env, name } = yargs.argv;
 const isProduction = (env === 'production');
-const libraryName = name || 'template';
+const libraryName = name || 'Template';
 
 const config = {
 

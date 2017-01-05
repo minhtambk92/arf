@@ -4,15 +4,24 @@
 
 /* global Response, Zone */
 
-/**
- * In production mode, webpack will force double quotes to string
- */
-const response = new Response("{{zoneDataObject}}"); // eslint-disable-line quotes
-const zoneId = "{{zoneId}}"; // eslint-disable-line quotes
+const script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//corejs.manhhailua.com/build/Arf.min.js';
+document.getElementsByTagName('body')[0].appendChild(script);
 
-new Zone({ // eslint-disable-line no-new
-  el: document.getElementById(zoneId),
-  propsData: {
-    model: response.getZoneObjectById(zoneId),
-  },
-});
+script.onload = () => {
+  /**
+   * In production mode, webpack will force double quotes to string
+   */
+  /* eslint-disable */
+  const response = new Arf.Response({"data":{"zones":[{"id":"cd25d64e-0be4-4947-8249-3998230cbf04","name":"Zone Top","description":"Zone Top of Bong Da So","type":"type-1","html":"html","css":"css","slot":3,"width":1160,"height":90,"shares":[{"id":"4017d61e-9c0f-4284-8399-623d2a2fcade","name":"Share 1","html":"<div class=\"hello\"></div>","css":".arf-placement {margin-bottom: 5px;}","width":1160,"height":90,"weight":30,"classes":"","type":"single","placements":[{"id":"661dc4ca-f8f3-488e-9939-5edde6c29bdd","name":"Placement 1160x90","description":"placement of Bong Da So","width":1160,"height":90,"weight":100,"startTime":"Fri Dec 23 2016 10:00:00 GMT+0700 (ICT)","endTime":"Tue Dec 12 2017 09:59:59 GMT+0700 (ICT)","status":"active","banners":[{"id":"a778a395-0858-44f6-9c67-2bd21e52e4d7","name":"Banner 1160x90","html":"<script>(function(){var admid='abc';function admGetUrlCk(){return '';} var __admLink='http://dantri.com.vn/'; var doc=document,url=__admLink,ua=navigator.userAgent+'';var videourl='http://adi.admicro.vn/adt/cpc/cpm7k/html/upload/2016/10/ariston_1160x90/1160x90.html';var imageurl='http://adi.admicro.vn/adt/cpc/cpm7k/html/upload/2016/10/ariston_1160x90/1160x250.png';var imgwidth=980;var imgheight=90;var html='<div style=\"position:relative;\">'; if(ua.indexOf('Android')!=-1 || ua.indexOf('iPad')!=-1 || ua.indexOf('iPhone')!=-1){html+=('<img src=\"'+imageurl+'\" border=\"0\" /><a href=\"'+url+'\" target=\"_blank\" style=\"position:absolute; top:0; left:0; width:'+imgwidth+'px; height:'+imgheight+'px; display:block;z-index:9999;\"><span></span></a>')}else{html+=('<iframe src=\"'+videourl+'?url='+(encodeURIComponent(url))+'&admid='+admid+'\" width=\"'+imgwidth+'\" frameborder=\"0\" scrolling=\"no\" height=\"'+imgheight+'\" ></iframe>')}html+='</div>';doc.write(html);})();</script>","width":1160,"height":90,"keyword":"iPhone, Android, iPad","weight":100,"description":"Banner 1160x90","type":"html","imageUrl":"","url":"","target":"_blank","adServer":"adtech","bannerHTMLType":"9","isIFrame":true,"isCountView":false,"isFixIE":false,"isDefault":false,"tracks":[]}]}]},{"id":"77fbc6fd-22dc-4f54-aa4c-702e1e31b06b","name":"Share 2","html":"<div class=\"hello\"></div>","css":".arf-placement{display:inline-block;margin-left:50px;}","width":1160,"height":90,"weight":70,"classes":"zone-top","type":"multiple","placements":[{"id":"7028d225-d553-48c5-8ee0-5bffdb1d22a2","name":"Placement 468x90","description":"placement of Rong Bay","width":468,"height":90,"weight":50,"startTime":"Fri Dec 23 2016 10:00:00 GMT+0700 (ICT)","endTime":"Tue Dec 12 2017 09:59:59 GMT+0700 (ICT)","status":"active","banners":[{"id":"15c8f8c5-c200-442e-9ca3-a33fec53ae37","name":"Banner 468x90","html":"<script>(function(){var admid='abc';function admGetUrlCk(){return '';} var __admLink='http://dantri.com.vn/'; var doc=document,url=__admLink,ua=navigator.userAgent+'';var videourl='http://adi.admicro.vn/adt/banners/nam2015/22/VietnamAirlines/2350416/091216/468x90.html';var imageurl='http://adi.admicro.vn/adt/banners/nam2015/22/VietnamAirlines/2350416/091216/vnethang12.jpg';var imgwidth=468;var imgheight=90;var html='<div style=\"position:relative;\">'; if(ua.indexOf('Android')!=-1 || ua.indexOf('iPad')!=-1 || ua.indexOf('iPhone')!=-1){html+=('<img src=\"'+imageurl+'\" border=\"0\" /><a href=\"'+url+'\" target=\"_blank\" style=\"position:absolute; top:0; left:0; width:'+imgwidth+'px; height:'+imgheight+'px; display:block;z-index:9999;\"><span></span></a>')}else{html+=('<iframe src=\"'+videourl+'?url='+(encodeURIComponent(url))+'&admid='+admid+'\" width=\"'+imgwidth+'\" frameborder=\"0\" scrolling=\"no\" height=\"'+imgheight+'\" ></iframe>')}html+='</div>';doc.write(html);})();</script>","width":468,"height":90,"keyword":"iPhone, Android, iPad","weight":100,"description":"Banner 468x90","type":"html","imageUrl":"","url":"","target":"_blank","adServer":"adtech","bannerHTMLType":"9","isIFrame":true,"isCountView":false,"isFixIE":false,"isDefault":false,"tracks":[]}]},{"id":"77ba2f66-df89-4d6b-beb5-4895d2ba22be","name":"Placement2 468x90","description":"placement of Rong Bay 2","width":468,"height":90,"weight":50,"startTime":"Fri Dec 23 2016 10:00:00 GMT+0700 (ICT)","endTime":"Tue Dec 12 2017 09:59:59 GMT+0700 (ICT)","status":"active","banners":[{"id":"33582e58-c5ae-48d0-9f90-fed03a82dc16","name":"Banner 468x90 Rong Bay","html":"<script>(function(){ var admid='def';function admGetUrlCk(){return '';} var __admLink='http://dantri.com.vn/';  var doc=document,url=admGetUrlCk()+encodeURIComponent(__admLink),ua=navigator.userAgent+'';var videourl='http://adi.admicro.vn/adt/banners/nam2015/4043/min_html5/2016_12_11/1481443555550/dragonbay/dragonbay_468_90_left.html';var imageurl='http://adi.admicro.vn/adt/banners/nam2015/4043/min_html5/2016_12_11/1481443555550/dragonbay/Images/dragonbay.png';var imgwidth=468;var imgheight=90;var html='<div style=\"position:relative;\">'; if(ua.indexOf('Android')!=-1 || ua.indexOf('iPad')!=-1 || ua.indexOf('iPhone')!=-1){html+=('<img src=\"' + imageurl + '\" border=\"0\" /><a href=\"' + url + '\" target=\"_blank\" style=\"position:absolute; top:0; left:0; width:' + imgwidth + 'px; height:' + imgheight + 'px; display:block;z-index:9999;\"><span></span></a>')}else{html+=('<iframe src=\"' + videourl + '?url=' + (encodeURIComponent(url)) + '&admid=' + admid + '\" width=\"' + imgwidth + '\" frameborder=\"0\" scrolling=\"no\" height=\"' + imgheight + '\" ></iframe>')}html+='</div>';doc.write(html);})();</script>","width":468,"height":90,"keyword":"iPhone, Android, iPad","weight":100,"description":"Banner 468x90","type":"html","imageUrl":"","url":"","target":"_blank","adServer":"adtech","bannerHTMLType":"9","isIFrame":true,"isCountView":false,"isFixIE":false,"isDefault":false,"tracks":[]}]}]}]}]}}); // eslint-disable-line quotes
+  const zoneId = "cd25d64e-0be4-4947-8249-3998230cbf04"; // eslint-disable-line quotes
+  /* eslint-enable */
+
+  new Arf.Zone({ // eslint-disable-line no-new, no-undef
+    el: document.getElementById(zoneId),
+    propsData: {
+      model: response.getZoneObjectById(zoneId),
+    },
+  });
+};

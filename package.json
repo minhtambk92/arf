@@ -7,8 +7,8 @@
     "start": "npm run develop",
     "develop": "webpack --config=./webpack.config.babel.js --env=development --progress --colors --watch",
     "develop-template": "webpack --config=./webpack.template.config.babel.js --env=development --progress --colors --watch",
-    "build": "webpack --config=./webpack.config.babel.js --env=production --progress --colors",
-    "build-template": "webpack --config=./webpack.template.config.babel.js --env=production --progress --colors",
+    "build": "webpack --config=./webpack.config.babel.js --env=production --progress --colors --name=Arf",
+    "build-template": "webpack --config=./webpack.template.config.babel.js --env=production --progress --colors --name=Arf",
     "test": "mocha --compilers js:babel-core/register -r jsdom-global/register --colors -w ./test/*.spec.js"
   },
   "devDependencies": {
@@ -19,6 +19,7 @@
     "babel-loader": "latest",
     "babel-plugin-syntax-jsx": "latest",
     "babel-plugin-transform-vue-jsx": "latest",
+    "babel-polyfill": "latest",
     "babel-preset-latest": "latest",
     "babel-preset-stage-0": "latest",
     "babel-register": "latest",

@@ -8,11 +8,11 @@ import yargs from 'yargs';
 
 const { env, name } = yargs.argv;
 const isProduction = (env === 'production');
-const libraryName = name || 'library';
+const libraryName = name || 'Library';
 
 const config = {
 
-  entry: `${__dirname}/src/index.js`,
+  entry: ['babel-polyfill', `${__dirname}/src/index.js`],
 
   devtool: 'source-map',
 
@@ -55,12 +55,12 @@ const config = {
     //   'process.env.NODE_ENV': isProduction ? '"production"' : '"development"',
     // }),
     ...isProduction ? [
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: true,
-        },
-      }),
-    ] : [],
+        new webpack.optimize.UglifyJsPlugin({
+          compress: {
+            warnings: true,
+          },
+        }),
+      ] : [],
     // optimize module ids by occurence count
     new webpack.optimize.OccurenceOrderPlugin(),
   ],
