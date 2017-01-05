@@ -51,16 +51,10 @@ const config = {
   },
 
   plugins: [
-    // new webpack.DefinePlugin({
-    //   'process.env.NODE_ENV': isProduction ? '"production"' : '"development"',
-    // }),
-    ...isProduction ? [
-        new webpack.optimize.UglifyJsPlugin({
-          compress: {
-            warnings: true,
-          },
-        }),
-      ] : [],
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': isProduction ? '"production"' : '"development"',
+    }),
+    ...isProduction ? [new webpack.optimize.UglifyJsPlugin({ compress: { warnings: true } })] : [],
     // optimize module ids by occurence count
     new webpack.optimize.OccurenceOrderPlugin(),
   ],
