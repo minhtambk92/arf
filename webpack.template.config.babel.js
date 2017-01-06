@@ -4,6 +4,7 @@
 
 import webpack from 'webpack';
 import yargs from 'yargs';
+import { author } from './package.json';
 
 const { env, name } = yargs.argv;
 const isProduction = (env === 'production');
@@ -44,7 +45,7 @@ const config = {
     }),
     ...isProduction ? [new webpack.optimize.UglifyJsPlugin({ compress: { warnings: true } })] : [],
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.BannerPlugin('Advertisement data\nZone: {{zoneId}}!'),
+    new webpack.BannerPlugin(`Advertisement data\nTemplate file v1.0.0\n© 2016-${new Date().getFullYear()} ${author}\nZone: {{zoneId}}`),
   ],
 
 };

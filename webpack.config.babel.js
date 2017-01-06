@@ -73,7 +73,7 @@ const config = {
     ...isProduction ? [new webpack.optimize.UglifyJsPlugin({ compress: { warnings: true } })] : [],
     // optimize module ids by occurence count
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.BannerPlugin(`${libraryFileName} v${version}\n${description}\n(c) 2016-${new Date().getFullYear()} ${author}\nReleased under the ${license} License.\n${homepage}`),
+    new webpack.BannerPlugin(`${libraryFileName} v${version}\n${description}\n© 2016-${new Date().getFullYear()} ${author}\nReleased under the ${license} License.\n${homepage}`),
   ],
 
 };
