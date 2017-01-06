@@ -5,6 +5,13 @@
 import path from 'path';
 import webpack from 'webpack';
 import yargs from 'yargs';
+import {
+  version,
+  description,
+  author,
+  license,
+  homepage,
+} from './package.json';
 
 const { env, name, release } = yargs.argv;
 const isProduction = (env === 'production');
@@ -66,8 +73,9 @@ const config = {
     ...isProduction ? [new webpack.optimize.UglifyJsPlugin({ compress: { warnings: true } })] : [],
     // optimize module ids by occurence count
     new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.BannerPlugin(`${libraryFileName} v${version}\n${description}\n(c) 2016-${new Date().getFullYear()} ${author}\nReleased under the ${license} License.\n${homepage}`),
   ],
 
 };
 
-module.exports = config;
+export default config;

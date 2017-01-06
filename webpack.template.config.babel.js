@@ -18,9 +18,6 @@ const config = {
   output: {
     path: `${__dirname}/build`,
     filename: isProduction ? `${libraryName}.min.js` : `${libraryName}.js`,
-    library: libraryName,
-    libraryTarget: 'umd',
-    umdNamedDefine: true,
   },
 
   module: {
@@ -46,10 +43,10 @@ const config = {
       'process.env.NODE_ENV': isProduction ? '"production"' : '"development"',
     }),
     ...isProduction ? [new webpack.optimize.UglifyJsPlugin({ compress: { warnings: true } })] : [],
-    // optimize module ids by occurence count
     new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.BannerPlugin('Advertisement data\nZone: {{zoneId}}!'),
   ],
 
 };
 
-module.exports = config;
+export default config;

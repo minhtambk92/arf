@@ -4,29 +4,65 @@
 
 /* global Arf */
 
-const script = document.createElement('script');
-script.type = 'text/javascript';
-script.src = '//corejs.manhhailua.com/build/Arf.build.js';
+// Async load script
+function loadScript(src, callback) {
+  const script = document.createElement('script');
+  const node = document.getElementsByTagName('body')[0];
 
-if (window.Arf === 'undefined' || !Object.prototype.hasOwnProperty.call(window, 'Arf')) {
-  document.getElementsByTagName('body')[0].appendChild(script);
+  script.id = 'admicro-cms-corejs';
+  script.type = 'text/javascript';
+  script.src = src;
+  script.onload = script.onreadystatechange = callback;
+
+  if (!document.getElementById(script.id)) {
+    node.appendChild(script);
+  } else {
+    callback();
+  }
 }
 
-function renderAds() {
-  /**
-   * In production mode, webpack will force double quotes to string
-   */
-  /* eslint-disable */
-  const response = new Arf.Response("{{zoneDataObject}}");
-  const zoneId = "{{zoneId}}";
-  /* eslint-enable */
+// Render ads by zone id and response object
+function renderAds(zoneId, responseObject) {
+  const id = zoneId;
+  const response = new Arf.Response(responseObject);
 
   new Arf.Zone({ // eslint-disable-line no-new, no-undef
-    el: document.getElementById(zoneId),
+    el: document.getElementById(id),
     propsData: {
-      model: response.getZoneObjectById(zoneId),
+      model: response.getZoneObjectById(id),
     },
   });
 }
 
-script.onload = renderAds;
+// Handle load script callback
+function handle() {
+  // In production mode, webpack will force double quotes for string
+  const response = "{{zoneDataObject}}"; // eslint-disable-line quotes
+  const zoneId = "{{zoneId}}"; // eslint-disable-line quotes
+
+  // Check if "Arf" defined
+  if (Object.prototype.hasOwnProperty.call(window, 'Arf')) {
+    // Let's render
+    renderAds(zoneId, response);
+
+    // If queue is not empty, render ads from it
+    if (window.arfQueue && window.arfQueue.length > 0) {
+      while (window.arfQueue.length > 0) {
+        const zone = window.arfQueue.shift();
+        renderAds(zone.zoneId, zone.response);
+      }
+    }
+  } else {
+    // Init queue
+    window.arfQueue = window.arfQueue || [];
+
+    // Push ads to queue
+    window.arfQueue.push({
+      zoneId,
+      response,
+    });
+  }
+}
+
+// Start load script
+loadScript('//corejs.manhhailua.com/build/Arf.build.js', handle);
