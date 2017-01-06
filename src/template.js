@@ -64,5 +64,25 @@ function handle() {
   }
 }
 
+// Check env
+let env = '';
+
+switch (true) {
+  // Development mode
+  case location.search.indexOf('corejs_env=dev') !== -1: {
+    env = '';
+    break;
+  }
+  // Pre-build mode (vue devtool included)
+  case location.search.indexOf('corejs_env=pre') !== -1: {
+    env = '.build';
+    break;
+  }
+  // Production mode
+  default: {
+    env = '.min';
+  }
+}
+
 // Start load script
-loadScript('//corejs.manhhailua.com/build/Arf.build.js', handle);
+loadScript(`//corejs.manhhailua.com/build/Arf${env}.js`, handle);
