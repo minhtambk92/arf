@@ -70,7 +70,12 @@ const config = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': (isProduction && release) ? '"production"' : '"development"',
     }),
-    ...isProduction ? [new webpack.optimize.UglifyJsPlugin({ compress: { warnings: true } })] : [],
+    ...isProduction ? [
+      new webpack.optimize.UglifyJsPlugin({
+        compress: { warnings: true },
+        comments: false,
+      }),
+    ] : [],
     // optimize module ids by occurence count
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.BannerPlugin(`${libraryFileName} v${version}\n${description}\n© 2016-${new Date().getFullYear()} ${author}\nReleased under the ${license} License.\n${homepage}`),
