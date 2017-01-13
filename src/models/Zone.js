@@ -53,15 +53,6 @@ class Zone extends Entity {
     return activeShareModel.activePlacements();
   }
 
-  /**
-   * Get array of active banners from all placements
-   * @return [Banner]
-   */
-  activeBanner() {
-    const activePlacementsModels = this.activePlacements();
-    return activePlacementsModels.map(placement => placement.activeBanner());
-  }
-
 }
 
 export default Zone;
