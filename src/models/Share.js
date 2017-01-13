@@ -10,15 +10,8 @@ class Share extends Entity {
   constructor(share) {
     super(share);
 
-    this._placements = share.placements;
-  }
-
-  get id() {
-    return `share-${super.id}`;
-  }
-
-  get placements() {
-    return this._placements;
+    this.id = `share-${share.id}`;
+    this.placements = share.placements;
   }
 
   /**

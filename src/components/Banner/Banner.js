@@ -36,6 +36,16 @@ const Banner = Vue.component('banner', {
     },
   },
 
+  created() {
+    // Init global container object
+    window.arfBanners = window.arfBanners || {};
+  },
+
+  updated() {
+    // Set current vm to container object
+    window.arfBanners[this.current.id] = this;
+  },
+
   mounted() {
     this._renderToIFrame();
   },

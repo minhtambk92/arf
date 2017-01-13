@@ -10,15 +10,8 @@ class Zone extends Entity {
   constructor(zone) {
     super(zone);
 
-    this._shares = zone.shares;
-  }
-
-  get id() {
-    return `zone-${super.id}`;
-  }
-
-  get shares() {
-    return this._shares;
+    this.id = `zone-${zone.id}`;
+    this.shares = zone.shares;
   }
 
   /**

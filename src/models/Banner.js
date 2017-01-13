@@ -9,15 +9,8 @@ class Banner extends Entity {
   constructor(banner) {
     super(banner);
 
-    this._relative = banner.relative;
-  }
-
-  get id() {
-    return `banner-${super.id}`;
-  }
-
-  get relative() {
-    return this._relative;
+    this.id = `banner-${banner.id}`;
+    this.relative = banner.relative;
   }
 
 }

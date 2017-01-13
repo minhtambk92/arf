@@ -10,15 +10,8 @@ class Placement extends Entity {
   constructor(placement) {
     super(placement);
 
-    this._banners = placement.banners;
-  }
-
-  get id() {
-    return `placement-${super.id}`;
-  }
-
-  get banners() {
-    return this._banners;
+    this.id = `placement-${placement.id}`;
+    this.banners = placement.banners;
   }
 
   /**
