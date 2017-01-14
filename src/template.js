@@ -73,7 +73,7 @@ switch (true) {
     env = '';
     break;
   }
-  // Pre-build mode (vue devtool included)
+  // Pre-build mode (vue development tool included)
   case location.search.indexOf('corejs_env=pre') !== -1: {
     env = '.build';
     break;
