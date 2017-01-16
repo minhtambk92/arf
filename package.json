@@ -5,11 +5,9 @@
   "main": "./build/Library.js",
   "scripts": {
     "start": "npm run develop",
-    "develop-template": "webpack --config=./webpack.template.config.babel.js --env=development --progress --colors --watch",
-    "release-template": "webpack --config=./webpack.template.config.babel.js --env=production --progress --colors",
-    "develop": "webpack --env=development --progress --colors --watch --name=Arf",
-    "build": "webpack --env=production --progress --colors --watch --name=Arf",
-    "release": "webpack --env=production --progress --colors --name=Arf --release",
+    "develop": "gulp watch",
+    "develop-template": "gulp watch-template",
+    "build": "gulp default",
     "test": "mocha --compilers js:babel-core/register -r jsdom-global/register --colors -w ./test/*.spec.js"
   },
   "devDependencies": {
