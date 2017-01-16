@@ -43,7 +43,13 @@ const config = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': isProduction ? '"production"' : '"development"',
     }),
-    ...isProduction ? [new webpack.optimize.UglifyJsPlugin({ compress: { warnings: true } })] : [],
+    ...isProduction ? [
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+        },
+      }),
+    ] : [],
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.BannerPlugin(`Advertisement data\nTemplate file v${version}\n© 2016-${new Date().getFullYear()} ${author}\nZone: {{zoneId}}`),
   ],

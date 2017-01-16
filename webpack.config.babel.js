@@ -72,7 +72,7 @@ const config = {
     }),
     ...isProduction ? [
       new webpack.optimize.UglifyJsPlugin({
-        compress: { warnings: true },
+        compress: { warnings: false },
         comments: false,
       }),
     ] : [],
