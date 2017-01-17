@@ -4,14 +4,7 @@
 
 /* eslint-disable import/prefer-default-export */
 
-import Banner from './Banner';
-import Placement from './Placement';
-import Share from './Share';
-import Zone from './Zone';
-
-export {
-  Banner,
-  Placement,
-  Share,
-  Zone,
-};
+export Zone from './Zone';
+export Share from './Share';
+export Placement from './Placement';
+export Banner from './Banner';
