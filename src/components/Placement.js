@@ -5,7 +5,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import Vue from 'vue';
-import { Placement as PlacementModel } from '../../models';
+import { Placement as PlacementModel } from '../models';
 import { Banner } from '../';
 
 const Placement = Vue.component('placement', {

@@ -5,7 +5,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import Vue from 'vue';
-import { Zone as ZoneModel } from '../../models';
+import { Zone as ZoneModel } from '../models';
 import { Share } from '../';
 
 const Zone = Vue.component('zone', {

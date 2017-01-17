@@ -5,7 +5,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import Vue from 'vue';
-import { Banner as BannerModel } from '../../models';
+import { Banner as BannerModel } from '../models';
 
 const Banner = Vue.component('banner', {
 

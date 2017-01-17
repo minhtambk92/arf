@@ -5,7 +5,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import Vue from 'vue';
-import { Share as ShareModel } from '../../models';
+import { Share as ShareModel } from '../models';
 import { Placement } from '../';
 
 const Share = Vue.component('share', {
