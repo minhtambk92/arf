@@ -4,7 +4,9 @@
 
 /* eslint-disable import/prefer-default-export */
 
-export Zone from './components/Zone';
-export Share from './components/Share';
-export Placement from './components/Placement';
-export Banner from './components/Banner';
+export {
+  Zone,
+  Share,
+  Placement,
+  Banner,
+} from './components';
