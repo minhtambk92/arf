@@ -22,14 +22,11 @@ function loadScript(src, callback) {
 }
 
 // Render ads by zone id and response object
-function renderAds(zoneId, responseObject) {
-  const id = zoneId;
-  const response = new Arf.Response(responseObject);
-
+function renderAds(zoneId, zoneObject) {
   new Arf.Zone({ // eslint-disable-line no-new, no-undef
-    el: document.getElementById(id),
+    el: document.getElementById(zoneId),
     propsData: {
-      model: response.getZoneObjectById(id),
+      model: zoneObject,
     },
   });
 }
@@ -37,29 +34,29 @@ function renderAds(zoneId, responseObject) {
 // Handle load script callback
 function handle() {
   // In production mode, webpack will force double quotes for string
-  const response = "{{zoneDataObject}}"; // eslint-disable-line quotes
   const zoneId = "{{zoneId}}"; // eslint-disable-line quotes
+  const zoneObject = "{{zoneDataObject}}"; // eslint-disable-line quotes
 
   // Check if "Arf" defined
   if (Object.prototype.hasOwnProperty.call(window, 'Arf')) {
     // Let's render
-    renderAds(zoneId, response);
+    renderAds(zoneId, zoneObject);
 
-    // If queue is not empty, render ads from it
+    // If arfQueue is not empty, render ads from it
     if (window.arfQueue && window.arfQueue.length > 0) {
       while (window.arfQueue.length > 0) {
         const zone = window.arfQueue.shift();
-        renderAds(zone.zoneId, zone.response);
+        renderAds(zone.id, zone.object);
       }
     }
   } else {
-    // Init queue
+    // Init arfQueue
     window.arfQueue = window.arfQueue || [];
 
-    // Push ads to queue
+    // Push ads to arfQueue
     window.arfQueue.push({
-      zoneId,
-      response,
+      id: zoneId,
+      object: zoneObject,
     });
   }
 }
