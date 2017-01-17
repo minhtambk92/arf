@@ -6,7 +6,7 @@
 
 import Vue from 'vue';
 import { Zone as ZoneModel } from '../models';
-import { Share } from '../';
+import { Share } from '../components';
 
 const Zone = Vue.component('zone', {
 

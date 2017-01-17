@@ -6,7 +6,7 @@
 
 import Vue from 'vue';
 import { Placement as PlacementModel } from '../models';
-import { Banner } from '../';
+import { Banner } from '../components';
 
 const Placement = Vue.component('placement', {
 

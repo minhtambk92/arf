@@ -6,7 +6,7 @@
 
 import Vue from 'vue';
 import { Share as ShareModel } from '../models';
-import { Placement } from '../';
+import { Placement } from '../components';
 
 const Share = Vue.component('share', {
 
