@@ -1,5 +1,5 @@
 {
-  "name": "ads-render",
+  "name": "arf",
   "version": "0.5.0",
   "description": "Advertisement Rendering Framework (ARF)",
   "main": "./build/Library.js",
