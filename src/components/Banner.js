@@ -6,6 +6,7 @@
 
 import Vue from 'vue';
 import { Banner as BannerModel } from '../models';
+import { dom } from '../mixins';
 
 const Banner = Vue.component('banner', {
 
@@ -23,6 +24,8 @@ const Banner = Vue.component('banner', {
       }),
     },
   },
+
+  mixins: [dom],
 
   data() {
     return {
@@ -47,15 +50,14 @@ const Banner = Vue.component('banner', {
   },
 
   mounted() {
-    this._renderToIFrame();
+    this.renderToIFrame();
   },
 
   methods: {
     /**
      * Wrap ads by an iframe
-     * @private
      */
-    _renderToIFrame() {
+    renderToIFrame() {
       const vm = this;
       const iframe = vm.iframe.el;
 
@@ -72,7 +74,11 @@ const Banner = Vue.component('banner', {
           iframe.contentWindow.document.write(vm.current.html);
           iframe.contentWindow.document.close();
 
-          vm.$data.isRendered = true; // Prevent AppleWebKit iframe.onload loop
+          // Prevent scroll on IE
+          iframe.contentWindow.document.body.style.margin = 0;
+
+          // Prevent AppleWebKit iframe.onload loop
+          vm.$data.isRendered = true;
         }
       };
 

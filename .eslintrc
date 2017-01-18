@@ -33,13 +33,6 @@
   "plugins": [],
 
   "rules": {
-    "no-underscore-dangle": [
-      2,
-      {
-        "allowAfterThis": true,
-        "allowAfterSuper": true
-      }
-    ],
     "react/no-string-refs": 0,
     "react/no-unknown-property": 0,
     "react/jsx-filename-extension": [

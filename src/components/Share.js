@@ -7,6 +7,7 @@
 import Vue from 'vue';
 import { Share as ShareModel } from '../models';
 import { Placement } from '../components';
+import { dom } from '../mixins';
 
 const Share = Vue.component('share', {
 
@@ -15,6 +16,8 @@ const Share = Vue.component('share', {
       type: Object,
     },
   },
+
+  mixins: [dom],
 
   created() {
     // Init global container object
@@ -33,33 +36,6 @@ const Share = Vue.component('share', {
 
     activePlacementsModels() {
       return this.current.activePlacements();
-    },
-  },
-
-  beforeMount() {
-    // Attach styles before rendering for better ads displaying performances
-    this._attachStyles();
-  },
-
-  methods: {
-    /**
-     * Attach share's style to header
-     * @private
-     */
-    async _attachStyles() {
-      const head = document.head || document.getElementsByTagName('head')[0];
-      const style = document.createElement('style');
-
-      style.id = `style-${this.current.id}`;
-      style.type = 'text/css';
-
-      if (style.styleSheet) {
-        style.styleSheet.cssText = this.current.css;
-      } else {
-        style.appendChild(document.createTextNode(this.current.css));
-      }
-
-      head.appendChild(style);
     },
   },
 

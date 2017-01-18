@@ -1,7 +1,14 @@
+/**
+ * Created by Manhhailua on 11/23/16.
+ */
+
 import chai from 'chai';
 import {
-  Response,
-} from '../build/Library';
+  Zone,
+  Share,
+  Placement,
+  Banner,
+} from '../build/Arf';
 
 chai.expect();
 

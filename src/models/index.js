@@ -2,8 +2,6 @@
  * Created by Manhhailua on 11/24/16.
  */
 
-/* eslint-disable import/prefer-default-export */
-
 export Zone from './Zone';
 export Share from './Share';
 export Placement from './Placement';

@@ -7,6 +7,7 @@
 import Vue from 'vue';
 import { Placement as PlacementModel } from '../models';
 import { Banner } from '../components';
+import { dom } from '../mixins';
 
 const Placement = Vue.component('placement', {
 
@@ -15,6 +16,8 @@ const Placement = Vue.component('placement', {
       type: Object,
     },
   },
+
+  mixins: [dom],
 
   created() {
     // Init global container object

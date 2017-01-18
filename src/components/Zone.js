@@ -7,6 +7,7 @@
 import Vue from 'vue';
 import { Zone as ZoneModel } from '../models';
 import { Share } from '../components';
+import { dom } from '../mixins';
 
 const Zone = Vue.component('zone', {
 
@@ -15,6 +16,8 @@ const Zone = Vue.component('zone', {
       type: Object,
     },
   },
+
+  mixins: [dom],
 
   created() {
     // Init global container object
