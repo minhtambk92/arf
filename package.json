@@ -1,8 +1,8 @@
 {
   "name": "arf",
-  "version": "0.5.3",
+  "version": "0.5.5",
   "description": "Advertisement Rendering Framework (ARF)",
-  "main": "./build/Arf.min.js",
+  "main": "./build/Arf.js",
   "scripts": {
     "start": "npm run develop",
     "develop": "gulp watch",

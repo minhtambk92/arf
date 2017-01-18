@@ -4,17 +4,22 @@
 
 ## Features
 
-* Webpack based.
+* Reactive render advertisement with Vuejs as core
 * Polyfill with Babel.
-* Vuejs as a rendering framework and an ads states manager.
-* ES6 as a source.
-* Exports in a [umd](https://github.com/umdjs/umd) format so your library works everywhere.
-* ES6 test setup with [Mocha](http://mochajs.org/) and [Chai](http://chaijs.com/).
-* Linting with [ESLint](http://eslint.org/) follow AirBnB style guide.
 
 *Have in mind that you have to build your library before publishing. The files under the `build` folder are the ones that should be distributed.*
 
-## Getting started
+## Installation
+
+This library is currently available on `npm`.
+
+```
+$ npm install arf --save
+```
+
+## Usage
+
+## Development guide
 
 1. Setting up the name of your library
   * Open `webpack.config.babel.js` file and change the value of `libraryName` variable or add `--name=<your library name>` to the build commands.
@@ -32,10 +37,3 @@
 * `npm run develop` - produces all versions of your library and template in watcher mode
 * `npm run build` - produces all versions of your library and template once
 * `npm run test` - well ... it runs the tests :)
-
-
-## Installation
-
-```
-$ npm install arf --save
-```

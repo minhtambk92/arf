@@ -97,6 +97,10 @@ const Banner = Vue.component('banner', {
       <div
         id={vm.current.id}
         class="arf-banner"
+        style={{
+          width: `${vm.current.width}px`,
+          height: `${vm.current.height}px`,
+        }}
       >
         <div ref="banner">{vm.current.html}</div>
       </div>
