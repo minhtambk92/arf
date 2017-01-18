@@ -42,7 +42,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/manhhailua/ads-render.git"
+    "url": "https://github.com/manhhailua/arf.git"
   },
   "keywords": [
     "webpack",
@@ -56,7 +56,7 @@
   "author": "Manhhailua",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/manhhailua/ads-render/issues"
+    "url": "https://github.com/manhhailua/arf/issues"
   },
-  "homepage": "https://github.com/manhhailua/ads-render"
+  "homepage": "https://github.com/manhhailua/arf"
 }
