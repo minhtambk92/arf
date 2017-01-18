@@ -32,3 +32,10 @@
 * `npm run develop` - produces all versions of your library and template in watcher mode
 * `npm run build` - produces all versions of your library and template once
 * `npm run test` - well ... it runs the tests :)
+
+
+## Installation
+
+```
+$ npm install arf --save
+```
