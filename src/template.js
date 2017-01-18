@@ -44,7 +44,7 @@ function handle() {
     // Init arfZonesQueue if not existed
     window.arfZonesQueue = window.arfZonesQueue || [];
 
-    // Push ads to arfQueue
+    // Push current zone to arfZonesQueue
     window.arfZonesQueue.push(zone);
   }
 }

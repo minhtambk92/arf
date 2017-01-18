@@ -25,6 +25,10 @@ if (typeof window !== 'undefined' && window.document) {
         model: zone,
       },
     });
+
+    if (window.arfZonesQueue.length === 0) {
+      delete window.arfZonesQueue;
+    }
   }
 
   // Render all banners
@@ -37,10 +41,14 @@ if (typeof window !== 'undefined' && window.document) {
         model: banner,
       },
     });
+
+    if (window.arfBannersQueue.length === 0) {
+      delete window.arfBannersQueue;
+    }
   }
 }
 
-export default {
+export {
   Zone,
   Share,
   Placement,
