@@ -1,6 +1,6 @@
 /*!
  * Advertisement data
- * Template file v0.5.2
+ * Template file v0.7.0
  * © 2016-2017 Manhhailua
  * Zone: {{zoneId}}
  */
@@ -58,63 +58,6 @@
 	
 	/* global Arf */
 	
-	// Async load script
-	function loadScript(src, callback) {
-	  var script = document.createElement('script');
-	  var node = document.getElementsByTagName('body')[0];
-	
-	  script.id = 'admicro-cms-corejs';
-	  script.type = 'text/javascript';
-	  script.src = src;
-	  script.onload = script.onreadystatechange = callback;
-	
-	  if (!document.getElementById(script.id)) {
-	    node.appendChild(script);
-	  } else {
-	    callback();
-	  }
-	}
-	
-	// Render ads by zone id and response object
-	function renderAds(zoneId, zoneObject) {
-	  new Arf.Zone({ // eslint-disable-line no-new, no-undef
-	    el: document.getElementById(zoneId),
-	    propsData: {
-	      model: zoneObject
-	    }
-	  });
-	}
-	
-	// Handle load script callback
-	function handle() {
-	  // In production mode, webpack will force double quotes for string
-	  var zoneId = "{{zoneId}}"; // eslint-disable-line quotes
-	  var zoneObject = "{{zoneDataObject}}"; // eslint-disable-line quotes
-	
-	  // Check if "Arf" defined
-	  if (Object.prototype.hasOwnProperty.call(window, 'Arf')) {
-	    // Let's render
-	    renderAds(zoneId, zoneObject);
-	
-	    // If arfQueue is not empty, render ads from it
-	    if (window.arfQueue && window.arfQueue.length > 0) {
-	      while (window.arfQueue.length > 0) {
-	        var zone = window.arfQueue.shift();
-	        renderAds(zone.id, zone.object);
-	      }
-	    }
-	  } else {
-	    // Init arfQueue
-	    window.arfQueue = window.arfQueue || [];
-	
-	    // Push ads to arfQueue
-	    window.arfQueue.push({
-	      id: zoneId,
-	      object: zoneObject
-	    });
-	  }
-	}
-	
 	// Check env
 	var env = '';
 	
@@ -136,6 +79,39 @@
 	    {
 	      env = '.min';
 	    }
+	}
+	
+	/**
+	 * Async load core-js script
+	 * @param src
+	 * @param callback
+	 */
+	function loadScript(src, callback) {
+	  var script = document.createElement('script');
+	  var node = document.getElementsByTagName('body')[0];
+	
+	  script.id = 'admicro-arf';
+	  script.type = 'text/javascript';
+	  script.src = src;
+	  script.onload = script.onreadystatechange = callback;
+	
+	  if (!document.getElementById(script.id)) {
+	    node.appendChild(script);
+	  } else {
+	    callback();
+	  }
+	}
+	
+	/**
+	 * Handle load script callback
+	 */
+	function handle() {
+	  // Init arfZonesQueue if not existed
+	  window.arfZonesQueue = window.arfZonesQueue || [];
+	
+	  // Push current zone to arfZonesQueue
+	  // In production mode, webpack will force double quotes for string
+	  window.arfZonesQueue.push("{{zoneDataObject}}"); // eslint-disable-line quotes
 	}
 	
 	// Start load script

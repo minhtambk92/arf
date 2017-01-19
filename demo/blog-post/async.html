@@ -24,8 +24,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script src="http://corejs.manhhailua.com/build/Arf.js"></script>
-
   </head>
 
   <body>
@@ -68,24 +66,22 @@
 
       <div class="row">
 
-        <!-- Ads Zone -->
-        <banner id="33582e58-c5ae-48d0-9f90-fed03a82dc16"></banner>
+        <!-- Ads Banner -->
+        <banner id="top"></banner>
         <script>
-          var banner = {
-            html: '<p>This is a banner</p>',
+          // Init arfBannersQueue if not existed
+          window.arfBannersQueue = window.arfBannersQueue || [];
+
+          // Push current banner to arfBannersQueue
+          // In production mode, webpack will force double quotes for string
+          window.arfBannersQueue.push({
+            id: 'top',
+            html: '<p>This is a top banner</p>',
             width: 468,
             height: 90,
-            weight: 100,
-          };
-
-          new Arf.Banner({
-            el: document.getElementById("33582e58-c5ae-48d0-9f90-fed03a82dc16"),
-            propsData: {
-              model: banner,
-            },
           });
         </script>
-        <!-- / Ads Zone -->
+        <!-- / Ads Banner -->
 
       </div>
 
@@ -239,10 +235,19 @@
 
           <div class="well">
 
-            <!-- Ads Zone -->
-            <!--<zone id="d4e65ac4-9630-4a0e-b2c0-11fe9d07b2f0"></zone>-->
-            <!--<script src="//adserving.manhhailua.com/corejs/arf-d4e65ac4-9630-4a0e-b2c0-11fe9d07b2f0.min.js"></script>-->
-            <!-- / Ads Zone -->
+            <!-- Ads Banner -->
+            <banner id="aside"></banner>
+            <script>
+              // Push current banner to arfBannersQueue
+              // In production mode, webpack will force double quotes for string
+              window.arfBannersQueue.push({
+                id: 'aside',
+                html: '<p>This is an aside banner</p>',
+                width: 300,
+                height: 250,
+              });
+            </script>
+            <!-- / Ads Banner -->
 
           </div>
 
@@ -278,6 +283,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="http://corejs.manhhailua.com/build/Arf.js"></script>
 
   </body>
 

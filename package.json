@@ -1,6 +1,6 @@
 {
   "name": "arf",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Advertisement Rendering Framework (ARF)",
   "main": "./build/Arf.js",
   "scripts": {
@@ -35,6 +35,7 @@
     "jsdom-global": "latest",
     "lodash": "latest",
     "mocha": "latest",
+    "pre-commit": "latest",
     "vue": "latest",
     "vue-loader": "latest",
     "webpack": "latest",
@@ -44,6 +45,7 @@
     "type": "git",
     "url": "https://github.com/manhhailua/arf.git"
   },
+  "pre-commit": "build",
   "keywords": [
     "webpack",
     "es6",

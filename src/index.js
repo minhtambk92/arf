@@ -2,6 +2,7 @@
  * Created by Manhhailua on 11/23/16.
  */
 
+import Vue from 'vue';
 import {
   Zone,
   Share,
@@ -9,48 +10,60 @@ import {
   Banner,
 } from './components';
 
-// Check if client side
+// These code run only on client side
 if (typeof window !== 'undefined' && window.document) {
-  // Init global ads array if they are not existed
-  window.arfZonesQueue = window.arfZonesQueue || [];
-  window.arfBannersQueue = window.arfBannersQueue || [];
+  /**
+   * Render ads from queue
+   * @param queue
+   * @param Entity
+   */
+  function renderEntities(queue, Entity) { // eslint-disable-line no-inner-declarations
+    if (
+      !(queue instanceof Array) || queue.length === 0 ||
+      JSON.stringify(Entity) !== JSON.stringify(Zone) ||
+      JSON.stringify(Entity) !== JSON.stringify(Banner)
+    ) {
+      return;
+    }
 
-  // Render all zones
-  while (window.arfZonesQueue.length > 0) {
-    const zone = window.arfZonesQueue.shift();
+    while (queue.length > 0) {
+      const entity = queue.shift();
 
-    new Zone({ // eslint-disable-line no-new, no-undef
-      el: document.getElementById(zone.id),
-      propsData: {
-        model: zone,
-      },
-    });
-
-    if (window.arfZonesQueue.length === 0) {
-      delete window.arfZonesQueue;
+      new Entity({ // eslint-disable-line no-new
+        el: document.getElementById(entity.id),
+        propsData: {
+          model: entity,
+        },
+      });
     }
   }
 
-  // Render all banners
-  while (window.arfBannersQueue.length > 0) {
-    const banner = window.arfBannersQueue.shift();
-
-    new Banner({ // eslint-disable-line no-new, no-undef
-      el: document.getElementById(banner.id),
-      propsData: {
-        model: banner,
+  /**
+   * Create a watcher of global queues
+   * Render every zones or banners which pushed to
+   * "window.arfBannersQueue" & "window.arfZonesQueue"
+   */
+  new Vue({ // eslint-disable-line no-new
+    data: {
+      zonesQueue: window.arfZonesQueue || [],
+      bannersQueue: window.arfBannersQueue || [],
+    },
+    // Render once at component created event
+    created() {
+      renderEntities(this.zonesQueue, Zone);
+      renderEntities(this.bannersQueue, Banner);
+    },
+    // Watch and render every times an entity is pushed to queue
+    watch: {
+      zonesQueue(value) {
+        renderEntities(value, Zone);
       },
-    });
-
-    if (window.arfBannersQueue.length === 0) {
-      delete window.arfBannersQueue;
-    }
-  }
+      bannersQueue(value) {
+        renderEntities(value, Banner);
+      },
+    },
+  });
 }
 
-export {
-  Zone,
-  Share,
-  Placement,
-  Banner,
-};
+export { Zone, Share, Placement, Banner };
+export default { Zone, Share, Placement, Banner };
