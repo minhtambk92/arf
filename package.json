@@ -47,7 +47,10 @@
     "type": "git",
     "url": "https://github.com/manhhailua/arf.git"
   },
-  "pre-commit": "build",
+  "pre-commit": [
+    "build",
+    "lint:staged"
+  ],
   "keywords": [
     "webpack",
     "es6",
