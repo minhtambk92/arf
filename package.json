@@ -4,6 +4,7 @@
   "description": "Advertisement Rendering Framework (ARF)",
   "main": "./build/Arf.js",
   "scripts": {
+    "lint:staged": "lint-staged",
     "start": "npm run develop",
     "develop": "gulp watch",
     "develop-template": "gulp watch-template",
@@ -33,6 +34,7 @@
     "gulp-cli": "latest",
     "jsdom": "latest",
     "jsdom-global": "latest",
+    "lint-staged": "^3.2.7",
     "lodash": "latest",
     "mocha": "latest",
     "pre-commit": "latest",

@@ -13,18 +13,9 @@ import {
   homepage,
 } from './package.json';
 
-const { env, name, release } = yargs.argv;
-const isProduction = (env === 'production');
+const { name, release } = yargs.argv;
 const libraryName = name || 'Library';
-let libraryFileName = '';
-
-if (!isProduction && !release) {
-  libraryFileName = `${libraryName}.js`;
-} else if (isProduction && !release) {
-  libraryFileName = `${libraryName}.build.js`;
-} else {
-  libraryFileName = `${libraryName}.min.js`;
-}
+const libraryFileName = `${libraryName}${release ? '.min' : ''}.js`;
 
 const config = {
 
@@ -68,9 +59,9 @@ const config = {
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': (isProduction && release) ? '"production"' : '"development"',
+      'process.env.NODE_ENV': release ? '"production"' : '"development"',
     }),
-    ...isProduction ? [
+    ...release ? [
       new webpack.optimize.UglifyJsPlugin({
         compress: { warnings: false },
         comments: false,

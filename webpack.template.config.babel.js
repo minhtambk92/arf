@@ -6,8 +6,7 @@ import webpack from 'webpack';
 import yargs from 'yargs';
 import { version, author } from './package.json';
 
-const { env, name } = yargs.argv;
-const isProduction = (env === 'production');
+const { name, release } = yargs.argv;
 const libraryName = name || 'Template';
 
 const config = {
@@ -18,7 +17,7 @@ const config = {
 
   output: {
     path: `${__dirname}/build`,
-    filename: isProduction ? `${libraryName}.min.js` : `${libraryName}.js`,
+    filename: release ? `${libraryName}.min.js` : `${libraryName}.js`,
   },
 
   module: {
@@ -41,9 +40,9 @@ const config = {
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': isProduction ? '"production"' : '"development"',
+      'process.env.NODE_ENV': release ? '"production"' : '"development"',
     }),
-    ...isProduction ? [
+    ...release ? [
       new webpack.optimize.UglifyJsPlugin({
         compress: {
           warnings: false,

@@ -2,8 +2,6 @@
  * Created by manhhailua on 1/4/17.
  */
 
-/* global Arf */
-
 const env = (location.search.indexOf('corejs_env=dev') !== -1) ? '' : '.min';
 const script = document.createElement('script');
 
