@@ -3,7 +3,7 @@
  */
 
 import chai from 'chai';
-import { Zone, Share, Placement, Banner } from '../build/Arf.min';
+import { Zone, Share, Placement, Banner } from '../build/Arf';
 import zone from './zone.json';
 
 const expect = chai.expect;
@@ -11,7 +11,11 @@ let zoneComponent;
 
 describe('Given an instance of zone object', () => {
   before(() => {
-    zoneComponent = new Zone(zone);
+    zoneComponent = new Zone({
+      propsData: {
+        model: zone,
+      },
+    });
   });
 
   it('should successfully create a Zone component', () => {
