@@ -48,7 +48,6 @@
     "url": "https://github.com/manhhailua/arf.git"
   },
   "pre-commit": [
-    "build",
     "lint:staged"
   ],
   "keywords": [
