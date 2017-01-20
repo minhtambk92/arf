@@ -1,6 +1,6 @@
 {
   "name": "arf",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "Advertisement Rendering Framework (ARF)",
   "main": "./build/Arf.js",
   "scripts": {
@@ -34,7 +34,7 @@
     "gulp-cli": "latest",
     "jsdom": "latest",
     "jsdom-global": "latest",
-    "lint-staged": "^3.2.7",
+    "lint-staged": "latest",
     "lodash": "latest",
     "mocha": "latest",
     "pre-commit": "latest",

@@ -31,7 +31,7 @@ $ npm install arf --save
 <banner id="my-banner"></banner>
 <script>
   new Arf.Banner({
-    el: document.getElementById('my-banner'),
+    el: '#my-banner',
     propsData: {
       model: {
         id: 'leader-board',
@@ -61,7 +61,7 @@ ARF handles two queues: `window.arfBannersQueue` & `window.arfZonesQueue`. `wind
   // Push current banner to arfBannersQueue
   // In production mode, webpack will force double quotes for string
   window.arfBannersQueue.push({
-    el: document.getElementById('my-banner'),
+    el: '#my-banner',
     propsData: {
       model: {
         id: 'leader-board',
@@ -77,6 +77,7 @@ ARF handles two queues: `window.arfBannersQueue` & `window.arfZonesQueue`. `wind
 ```
 <script src="path/to/your/arf.min.js"></script>
 ```
+ARF watches the above two queues for changes then render all ads pushed to queues.
 
 ## Development guide
 

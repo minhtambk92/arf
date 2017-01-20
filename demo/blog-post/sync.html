@@ -72,7 +72,7 @@
         <banner id="top"></banner>
         <script>
           new Arf.Banner({
-            el: document.getElementById('top'),
+            el: '#top',
             propsData: {
               model: {
                 id: 'leader-board',
@@ -243,7 +243,7 @@
               // Push current banner to arfBannersQueue
               // In production mode, webpack will force double quotes for string
               window.arfBannersQueue.push({
-                el: document.getElementById('aside'),
+                el: '#aside',
                 propsData: {
                   model: {
                     id: 'standard-300x250',

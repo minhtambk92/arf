@@ -1,5 +1,5 @@
 /*!
- * Arf.js v0.7.4
+ * Arf.js v0.7.5
  * Advertisement Rendering Framework (ARF)
  * © 2016-2017 Manhhailua
  * Released under the MIT License.
