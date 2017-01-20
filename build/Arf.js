@@ -1,5 +1,5 @@
 /*!
- * Arf.js v0.7.0
+ * Arf.js v0.7.2
  * Advertisement Rendering Framework (ARF)
  * © 2016-2017 Manhhailua
  * Released under the MIT License.
@@ -87,6 +87,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	if (typeof window !== 'undefined' && window.document) {
 	  (function () {
+	
 	    /**
 	     * Render ads from queue
 	     * @param queue
@@ -99,14 +100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	
 	      while (queue.length > 0) {
-	        var entity = queue.shift();
-	
-	        new Entity({ // eslint-disable-line no-new
-	          el: document.getElementById(entity.id),
-	          propsData: {
-	            model: entity
-	          }
-	        });
+	        new Entity(queue.shift()); // eslint-disable-line no-new
 	      }
 	    };
 	
@@ -117,10 +111,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	
 	
-	    new _vue2.default({ // eslint-disable-line no-new
+	    /**
+	     * Init queues
+	     * @type {Array}
+	     */
+	    window.arfZonesQueue = window.arfZonesQueue || [];
+	    window.arfBannersQueue = window.arfBannersQueue || [];new _vue2.default({ // eslint-disable-line no-new
 	      data: {
-	        zonesQueue: window.arfZonesQueue || [],
-	        bannersQueue: window.arfBannersQueue || []
+	        zonesQueue: window.arfZonesQueue,
+	        bannersQueue: window.arfBannersQueue
 	      },
 	      // Render once at component created event
 	      created: function created() {
@@ -9940,9 +9939,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  created: function created() {
 	    // Init global container object
 	    window.arfBanners = window.arfBanners || {};
-	  },
-	  updated: function updated() {
-	    // Set current vm to container object
 	    window.arfBanners[this.current.id] = this;
 	  },
 	  mounted: function mounted() {
@@ -10059,9 +10055,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  created: function created() {
 	    // Init global container object
 	    window.arfPlacements = window.arfPlacements || {};
-	  },
-	  updated: function updated() {
-	    // Set current vm to container object
 	    window.arfPlacements[this.current.id] = this;
 	  },
 	
@@ -10145,9 +10138,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  created: function created() {
 	    // Init global container object
 	    window.arfShares = window.arfShares || {};
-	  },
-	  updated: function updated() {
-	    // Set current vm to container object
 	    window.arfShares[this.current.id] = this;
 	  },
 	
@@ -10233,9 +10223,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  created: function created() {
 	    // Init global container object
 	    window.arfZones = window.arfZones || {};
-	  },
-	  updated: function updated() {
-	    // Set current vm to container object
 	    window.arfZones[this.current.id] = this;
 	  },
 	

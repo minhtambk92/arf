@@ -1,6 +1,6 @@
 {
   "name": "arf",
-  "version": "0.7.0",
+  "version": "0.7.3",
   "description": "Advertisement Rendering Framework (ARF)",
   "main": "./build/Arf.js",
   "scripts": {

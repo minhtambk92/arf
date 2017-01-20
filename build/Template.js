@@ -1,6 +1,6 @@
 /*!
  * Advertisement data
- * Template file v0.7.0
+ * Template file v0.7.2
  * © 2016-2017 Manhhailua
  * Zone: {{zoneId}}
  */
@@ -56,6 +56,8 @@
 	 * Created by manhhailua on 1/4/17.
 	 */
 	
+	/* eslint-disable quotes */
+	
 	var env = location.search.indexOf('corejs_env=dev') !== -1 ? '' : '.min';
 	var script = document.createElement('script');
 	
@@ -75,7 +77,12 @@
 	
 	// Push current zone to arfZonesQueue
 	// In production mode, webpack will force double quotes for string
-	window.arfZonesQueue.push("{{zoneDataObject}}"); // eslint-disable-line quotes
+	window.arfZonesQueue.push({
+	  el: document.getElementById("{{zoneId}}"),
+	  propsData: {
+	    model: "{{zoneDataObject}}"
+	  }
+	});
 
 /***/ }
 /******/ ]);
