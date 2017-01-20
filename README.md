@@ -21,12 +21,12 @@ $ npm install arf --save
 
 #### Sync guide
 
-1. Implement the framework, put this line of code on your `head` tag
+#####1. Implement the framework, put this line of code on your `head` tag
 ```
 <script src="path/to/your/arf.min.js"></script>
 ```
 
-2. Add a banner container to your document `body`
+#####2. Add a banner container to your document `body`
 ```
 <banner id="my-banner"></banner>
 <script>
@@ -43,13 +43,14 @@ $ npm install arf --save
   });
 </script>
 ```
+
 If you have already known [Vue.js](https://vuejs.org), you will recognize the above syntax. `Arf.Banner` is an instance of [Vue.component](https://vuejs.org/v2/guide/components.html#ad) , so `Arf.Banner` has every features which Vue.component supplies.
 
 #### Async guide
 
 This is one of the best features of ARF. You can define your ads every where you want then asynchronously implement ARF at the bottom of `body` tag. Your banners will wait in queue till ARF is defined. When ARF is defined, ARF will fetch through the queue then render all the banner the queue containing.
 
-1. Define a banner:
+#####1. Define a banner:
 ARF handles two queues: `window.arfBannersQueue` & `window.arfZonesQueue`. `window.arfZonesQueue` is for advanced usages with sharing a space for multiple banners. If you just want to put an ads to your site/app, `window.arfBannersQueue` is all you need.
 ```
 <banner id="my-banner"></banner>
@@ -72,8 +73,7 @@ ARF handles two queues: `window.arfBannersQueue` & `window.arfZonesQueue`. `wind
   });
 </script>
 ```
-
-2. Put ARF before your `</body>`
+#####2. Put ARF before your `</body>`
 ```
 <script src="path/to/your/arf.min.js"></script>
 ```
