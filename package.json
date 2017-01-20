@@ -5,6 +5,7 @@
   "main": "./build/Arf.js",
   "scripts": {
     "lint:staged": "lint-staged",
+    "lint": "eslint ./src",
     "start": "npm run develop",
     "develop": "gulp watch",
     "develop-template": "gulp watch-template",
