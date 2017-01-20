@@ -22,10 +22,6 @@ const Placement = Vue.component('placement', {
   created() {
     // Init global container object
     window.arfPlacements = window.arfPlacements || {};
-  },
-
-  updated() {
-    // Set current vm to container object
     window.arfPlacements[this.current.id] = this;
   },
 

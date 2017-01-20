@@ -2,6 +2,8 @@
  * Created by manhhailua on 1/4/17.
  */
 
+/* eslint-disable quotes */
+
 const env = (location.search.indexOf('corejs_env=dev') !== -1) ? '' : '.min';
 const script = document.createElement('script');
 
@@ -21,4 +23,9 @@ window.arfZonesQueue = window.arfZonesQueue || [];
 
 // Push current zone to arfZonesQueue
 // In production mode, webpack will force double quotes for string
-window.arfZonesQueue.push("{{zoneDataObject}}"); // eslint-disable-line quotes
+window.arfZonesQueue.push({
+  el: document.getElementById("{{zoneId}}"),
+  propsData: {
+    model: "{{zoneDataObject}}",
+  },
+});

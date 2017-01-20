@@ -22,10 +22,6 @@ const Zone = Vue.component('zone', {
   created() {
     // Init global container object
     window.arfZones = window.arfZones || {};
-  },
-
-  updated() {
-    // Set current vm to container object
     window.arfZones[this.current.id] = this;
   },
 

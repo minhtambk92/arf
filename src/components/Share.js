@@ -22,10 +22,6 @@ const Share = Vue.component('share', {
   created() {
     // Init global container object
     window.arfShares = window.arfShares || {};
-  },
-
-  updated() {
-    // Set current vm to container object
     window.arfShares[this.current.id] = this;
   },
 

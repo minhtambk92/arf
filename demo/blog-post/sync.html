@@ -24,6 +24,8 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script src="http://corejs.manhhailua.com/build/Arf.js"></script>
+
   </head>
 
   <body>
@@ -69,16 +71,11 @@
         <!-- Ads Banner -->
         <banner id="top"></banner>
         <script>
-          // Init arfBannersQueue if not existed
-          window.arfBannersQueue = window.arfBannersQueue || [];
-
-          // Push current banner to arfBannersQueue
-          // In production mode, webpack will force double quotes for string
-          window.arfBannersQueue.push({
+          new Arf.Banner({
             el: document.getElementById('top'),
             propsData: {
               model: {
-                id: 'top',
+                id: 'leader-board',
                 html: '<p>This is a top banner</p>',
                 width: 468,
                 height: 90,
@@ -249,7 +246,7 @@
                 el: document.getElementById('aside'),
                 propsData: {
                   model: {
-                    id: 'aside',
+                    id: 'standard-300x250',
                     html: '<p>This is an aside banner</p>',
                     width: 300,
                     height: 250,
@@ -293,7 +290,6 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="http://corejs.manhhailua.com/build/Arf.js"></script>
 
   </body>
 

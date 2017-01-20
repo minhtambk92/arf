@@ -13,6 +13,13 @@ import {
 // These code run only on client side
 if (typeof window !== 'undefined' && window.document) {
   /**
+   * Init queues
+   * @type {Array}
+   */
+  window.arfZonesQueue = window.arfZonesQueue || [];
+  window.arfBannersQueue = window.arfBannersQueue || [];
+
+  /**
    * Render ads from queue
    * @param queue
    * @param Entity
@@ -27,14 +34,7 @@ if (typeof window !== 'undefined' && window.document) {
     }
 
     while (queue.length > 0) {
-      const entity = queue.shift();
-
-      new Entity({ // eslint-disable-line no-new
-        el: document.getElementById(entity.id),
-        propsData: {
-          model: entity,
-        },
-      });
+      new Entity(queue.shift()); // eslint-disable-line no-new
     }
   }
 
@@ -45,8 +45,8 @@ if (typeof window !== 'undefined' && window.document) {
    */
   new Vue({ // eslint-disable-line no-new
     data: {
-      zonesQueue: window.arfZonesQueue || [],
-      bannersQueue: window.arfBannersQueue || [],
+      zonesQueue: window.arfZonesQueue,
+      bannersQueue: window.arfBannersQueue,
     },
     // Render once at component created event
     created() {
