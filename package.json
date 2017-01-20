@@ -6,11 +6,12 @@
   "scripts": {
     "lint:staged": "lint-staged",
     "lint": "eslint ./src",
+    "test:watch": "mocha --compilers js:babel-core/register -r jsdom-global/register --colors --watch ./test/*.spec.js",
+    "test": "mocha --compilers js:babel-core/register -r jsdom-global/register --colors ./test/*.spec.js"
     "start": "npm run develop",
     "develop": "gulp watch",
     "develop-template": "gulp watch-template",
     "build": "gulp default",
-    "test": "mocha --compilers js:babel-core/register -r jsdom-global/register --colors -w ./test/*.spec.js"
   },
   "devDependencies": {
     "babel": "latest",
