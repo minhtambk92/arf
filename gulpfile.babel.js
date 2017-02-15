@@ -31,7 +31,6 @@ const WATCH = 'watch';
 const WATCH_TEMPLATE = 'watch-template';
 
 gulp.task(CREATE_LIBRARY_DEVELOPMENT_VERSION, () => {
-  // exec('node_modules/.bin/webpack --name=Arf --colors');
   const pc = spawn('node_modules/.bin/webpack', [
     '--name=Arf',
     '--colors',
@@ -41,7 +40,6 @@ gulp.task(CREATE_LIBRARY_DEVELOPMENT_VERSION, () => {
 });
 
 gulp.task(CREATE_LIBRARY_RELEASE_VERSION, () => {
-  // exec('node_modules/.bin/webpack --name=Arf --colors --release')
   const pc = spawn('node_modules/.bin/webpack', [
     '--name=Arf',
     '--colors',
@@ -52,7 +50,6 @@ gulp.task(CREATE_LIBRARY_RELEASE_VERSION, () => {
 });
 
 gulp.task(CREATE_TEMPLATE_DEVELOPMENT_VERSION, () => {
-  // exec('node_modules/.bin/webpack --config=./webpack.template.config.babel.js --colors');
   const pc = spawn('node_modules/.bin/webpack', [
     '--config=./webpack.template.config.babel.js',
     '--colors',
@@ -62,7 +59,6 @@ gulp.task(CREATE_TEMPLATE_DEVELOPMENT_VERSION, () => {
 });
 
 gulp.task('create-template-release-version', () => {
-  // exec('node_modules/.bin/webpack --config=./webpack.template.config.babel.js --colors');
   const pc = spawn('node_modules/.bin/webpack', [
     '--config=./webpack.template.config.babel.js',
     '--colors',

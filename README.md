@@ -61,7 +61,6 @@ ARF handles two queues: `window.arfBannersQueue` & `window.arfZonesQueue`. `wind
   window.arfBannersQueue = window.arfBannersQueue || [];
 
   // Push current banner to arfBannersQueue
-  // In production mode, webpack will force double quotes for string
   window.arfBannersQueue.push({
     el: '#my-banner',
     propsData: {
