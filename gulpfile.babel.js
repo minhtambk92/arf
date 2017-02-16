@@ -5,7 +5,7 @@
 /* eslint-disable no-console */
 
 import gulp from 'gulp';
-import { spawn } from 'child_process';
+import { exec } from 'child_process';
 import { StringDecoder } from 'string_decoder';
 
 const decoder = new StringDecoder('utf8');
@@ -31,39 +31,25 @@ const WATCH = 'watch';
 const WATCH_TEMPLATE = 'watch-template';
 
 gulp.task(CREATE_LIBRARY_DEVELOPMENT_VERSION, () => {
-  const pc = spawn('node_modules/.bin/webpack', [
-    '--name=Arf',
-    '--colors',
-  ]);
+  const pc = exec('NAME=Arf node_modules/.bin/webpack --colors');
 
   printLogs(pc);
 });
 
 gulp.task(CREATE_LIBRARY_RELEASE_VERSION, () => {
-  const pc = spawn('node_modules/.bin/webpack', [
-    '--name=Arf',
-    '--colors',
-    '--release',
-  ]);
+  const pc = exec('NAME=Arf RELEASE=true node_modules/.bin/webpack --colors');
 
   printLogs(pc);
 });
 
 gulp.task(CREATE_TEMPLATE_DEVELOPMENT_VERSION, () => {
-  const pc = spawn('node_modules/.bin/webpack', [
-    '--config=./webpack.template.config.babel.js',
-    '--colors',
-  ]);
+  const pc = exec('node_modules/.bin/webpack --config=./webpack.template.config.babel.js --colors');
 
   printLogs(pc);
 });
 
 gulp.task('create-template-release-version', () => {
-  const pc = spawn('node_modules/.bin/webpack', [
-    '--config=./webpack.template.config.babel.js',
-    '--colors',
-    '--release',
-  ]);
+  const pc = exec('RELEASE=true node_modules/.bin/webpack --config=./webpack.template.config.babel.js --colors');
 
   printLogs(pc);
 });

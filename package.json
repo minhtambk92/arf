@@ -42,8 +42,7 @@
     "pre-commit": "latest",
     "vue": "latest",
     "vue-loader": "latest",
-    "webpack": "latest",
-    "yargs": "latest"
+    "webpack": "latest"
   },
   "repository": {
     "type": "git",

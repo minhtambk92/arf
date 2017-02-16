@@ -2,9 +2,7 @@
  * Created by manhhailua on 1/4/17.
  */
 
-import path from 'path';
 import webpack from 'webpack';
-import yargs from 'yargs';
 import {
   version,
   description,
@@ -13,9 +11,9 @@ import {
   homepage,
 } from './package.json';
 
-const { name, release } = yargs.argv;
-const libraryName = name || 'Library';
-const libraryFileName = `${libraryName}${release ? '.min' : ''}.js`;
+const { NAME, RELEASE } = process.env;
+const libraryName = NAME || 'Library';
+const libraryFileName = `${libraryName}${RELEASE ? '.min' : ''}.js`;
 
 const config = {
 
@@ -35,7 +33,7 @@ const config = {
     loaders: [
       {
         test: /(\.js)$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /(node_modules|bower_components)/,
         query: {
           compact: 'auto',
@@ -53,22 +51,19 @@ const config = {
     alias: {
       vue$: `${__dirname}/node_modules/vue/dist/vue.common.js`,
     },
-    root: path.resolve('./src'),
-    extensions: ['', '.js'],
+    extensions: ['.js'],
   },
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': release ? '"production"' : '"development"',
+      'process.env.NODE_ENV': RELEASE ? '"production"' : '"development"',
     }),
-    ...release ? [
+    ...RELEASE ? [
       new webpack.optimize.UglifyJsPlugin({
         compress: { warnings: false },
         comments: false,
       }),
     ] : [],
-    // optimize module ids by occurence count
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.BannerPlugin(`${libraryFileName} v${version}\n${description}\n© 2016-${new Date().getFullYear()} ${author}\nReleased under the ${license} License.\n${homepage}`),
   ],
 

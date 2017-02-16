@@ -3,11 +3,10 @@
  */
 
 import webpack from 'webpack';
-import yargs from 'yargs';
 import { version, author } from './package.json';
 
-const { name, release } = yargs.argv;
-const libraryName = name || 'Template';
+const { NAME, RELEASE } = process.env;
+const libraryName = NAME || 'Template';
 
 const config = {
 
@@ -17,14 +16,14 @@ const config = {
 
   output: {
     path: `${__dirname}/build`,
-    filename: release ? `${libraryName}.min.js` : `${libraryName}.js`,
+    filename: RELEASE ? `${libraryName}.min.js` : `${libraryName}.js`,
   },
 
   module: {
     loaders: [
       {
         test: /(\.js)$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /(node_modules|bower_components)/,
         query: {
           compact: 'auto',
@@ -40,16 +39,15 @@ const config = {
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': release ? '"production"' : '"development"',
+      'process.env.NODE_ENV': RELEASE ? '"production"' : '"development"',
     }),
-    ...release ? [
+    ...RELEASE ? [
       new webpack.optimize.UglifyJsPlugin({
         compress: {
           warnings: false,
         },
       }),
     ] : [],
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.BannerPlugin(`Advertisement data\nTemplate file v${version}\n© 2016-${new Date().getFullYear()} ${author}\nZone: {{zoneId}}`),
   ],
 
