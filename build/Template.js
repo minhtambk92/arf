@@ -1,6 +1,6 @@
 /*!
  * Advertisement data
- * Template file v0.7.6
+ * Template file v0.7.7
  * © 2016-2017 Manhhailua
  * Zone: {{zoneId}}
  */
