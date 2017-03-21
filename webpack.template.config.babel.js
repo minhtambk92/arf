@@ -63,7 +63,7 @@ const config = {
         },
       }),
     ] : [],
-    new webpack.BannerPlugin(`Advertisement data\nTemplate file v${version}\n© 2016-${new Date().getFullYear()} ${author}\nZone: {{zoneId}}`),
+    new webpack.BannerPlugin(`Advertisement data\nTemplate file v${version}\nCopyright 2016-${new Date().getFullYear()} ${author}\nZone: {{zoneId}}`),
   ],
 
 };
