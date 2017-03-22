@@ -263,11 +263,11 @@ class Banner extends Entity {
       const currentCount = this.getFrequency();
       if (window.arfBanners[bannerID] && bannerID !== 'banner-undefined') {
         cookie = `${cookie}`.replace(FrequencyStr, `${bannerID}:${currentCount + 1}`);
-        // // console.log(`${bannerID}:${currentCount + 1}`);
+        // console.log(`${bannerID}:${currentCount + 1}`);
       }
     } else {
       cookie = bannerID === 'banner-undefined' ? cookie : `${cookie};${bannerID}:1;`;
-      // // console.log(adsStorage.subCookie(cookie, `${bannerID}:`, 0).toString());
+      // console.log(adsStorage.subCookie(cookie, `${bannerID}:`, 0).toString());
     }
     adsStorage.setStorage('_fr', cookie, '', '/');
   }

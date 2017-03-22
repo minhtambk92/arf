@@ -1,6 +1,6 @@
 {
   "name": "arf",
-  "version": "0.7.9",
+  "version": "0.8.1",
   "description": "Advertisement Rendering Framework (ARF)",
   "main": "./build/Arf.js",
   "scripts": {
@@ -40,6 +40,7 @@
     "lodash": "latest",
     "mocha": "latest",
     "pre-commit": "latest",
+    "string-replace-webpack-plugin": "latest",
     "vue": "latest",
     "vue-loader": "latest",
     "webpack": "latest"
