@@ -2,11 +2,11 @@
  * Created by tlm on 06/03/2017.
  */
 
-const paths = {
-  // get the path to check admChannel or pageUrl
+const term = {
+  // get the path (admChannel or pageUrl) to check
   getPath2Check(type) {
     if (typeof (_ADM_Channel) !== 'undefined' && _ADM_Channel !== '') { // eslint-disable-line no-undef,camelcase
-      return _ADM_Channel; // eslint-disable-line no-undef,camelcase
+      return decodeURIComponent(_ADM_Channel); // eslint-disable-line no-undef,camelcase
     }
     const url = document.URL;
     const ref = document.referrer;
@@ -64,6 +64,7 @@ const paths = {
     }
     return false;
   },
+
   stripos(path, data, offset) {
     const haystack = (`${path}`).toLowerCase();
     const needle = (`${data}`).toLowerCase();
@@ -71,4 +72,4 @@ const paths = {
   },
 };
 
-export default paths;
+export default term;

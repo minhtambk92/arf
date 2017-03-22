@@ -47,6 +47,7 @@ const Banner = Vue.component('banner', {
 
   mounted() {
     this.renderToIFrame();
+    this.current.countFrequency();
   },
 
   methods: {
