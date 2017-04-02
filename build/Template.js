@@ -1,6 +1,6 @@
 /*!
  * Advertisement data
- * Template file v0.8.1
+ * Template file v0.8.3
  * Copyright 2016-2017 Manhhailua
  * Zone: {{zoneId}}
  */
@@ -89,7 +89,7 @@ var env = location.search.indexOf('corejs_env=dev') !== -1 ? '' : '.min';
 var script = document.createElement('script');
 script.id = 'arf-core-js';
 script.type = 'text/javascript';
-script.src = '//corejs.codek.org/build/Arf' + env + '.js';
+script.src = '//corejs.cloud.codek.org/build/Arf' + env + '.js';
 
 // Async load core-js script
 if (!document.getElementById(script.id)) {

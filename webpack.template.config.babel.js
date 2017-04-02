@@ -42,7 +42,7 @@ const config = {
             {
               pattern: '{{arfHost}}',
               replacement() {
-                return ARF_HOST || 'corejs.codek.org'; // Default host for ARF
+                return ARF_HOST || 'corejs.cloud.codek.org'; // Default host for ARF
               },
             },
           ],
