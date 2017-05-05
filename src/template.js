@@ -6,14 +6,11 @@
 
 const env = (location.search.indexOf('corejs_env=dev') !== -1) ? '' : '.min';
 const script = document.createElement('script');
-
 script.id = 'arf-core-js';
-script.type = 'text/javascript';
-script.src = `//corejs.manhhailua.com/build/Arf${env}.js`;
+script.type = 'application/javascript';
+script.src = `http://rawgit.com/minhtambk92/ARF-Sub/master/build/Arf${env}.js`;
 
-/**
- * Async load core-js script
- */
+// Async load core-js script
 if (!document.getElementById(script.id)) {
   document.getElementsByTagName('body')[0].appendChild(script);
 }

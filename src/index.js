@@ -12,6 +12,17 @@ import {
 
 // These code run only on client side
 if (typeof window !== 'undefined' && window.document) {
+  // load tracking -> this provide location
+  const trackingJs = document.getElementById('adm-tracking');
+  if (trackingJs == null) {
+    const b = document.createElement('script');
+    b.id = 'adm-tracking';
+    b.type = 'text/javascript';
+    b.async = !0;
+    b.src = '//media1.admicro.vn/core/adm_tracking.js?id=1';
+    const c = document.getElementsByTagName('script')[0];
+    c.parentNode.insertBefore(b, c);
+  }
   /**
    * Init queues
    * @type {Array}
@@ -24,7 +35,7 @@ if (typeof window !== 'undefined' && window.document) {
    * @param queue
    * @param Entity
    */
-  function renderEntities(queue, Entity) { // eslint-disable-line no-inner-declarations
+  const renderEntities = (queue, Entity) => {
     if (
       !(queue instanceof Array) || queue.length === 0 ||
       JSON.stringify(Entity) !== JSON.stringify(Zone) ||
@@ -36,7 +47,7 @@ if (typeof window !== 'undefined' && window.document) {
     while (queue.length > 0) {
       new Entity(queue.shift()); // eslint-disable-line no-new
     }
-  }
+  };
 
   /**
    * Create a watcher of global queues

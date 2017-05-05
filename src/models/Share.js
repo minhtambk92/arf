@@ -4,6 +4,7 @@
 
 import Entity from './Entity';
 import Placement from './Placement';
+import { util } from '../vendor';
 
 class Share extends Entity {
 
@@ -12,6 +13,10 @@ class Share extends Entity {
 
     this.id = `share-${share.id}`;
     this.placements = share.placements;
+  }
+
+  get shareArea() {
+    return util.convertArea(this.height, this.width);
   }
 
   /**

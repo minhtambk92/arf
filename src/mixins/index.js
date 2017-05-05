@@ -3,3 +3,4 @@
  */
 
 export dom from './dom';
+export adsData from './adsData';
