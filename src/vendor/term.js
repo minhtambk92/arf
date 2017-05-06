@@ -4,10 +4,21 @@
 
 const term = {
   // get the path (admChannel or pageUrl) to check
-  getPath2Check(type) {
-    if (typeof (_ADM_Channel) !== 'undefined' && _ADM_Channel !== '') { // eslint-disable-line no-undef,camelcase
-      return decodeURIComponent(_ADM_Channel); // eslint-disable-line no-undef,camelcase
+  getPath2Check(type, variableName) {
+    const globalVariable = eval(`typeof (${variableName}) !== 'undefined' && ${variableName} !== ''`) ? eval(variableName) : undefined; // eslint-disable-line no-eval
+    if (typeof (globalVariable) !== 'undefined' && globalVariable !== '') { // eslint-disable-line no-undef,camelcase
+      return decodeURIComponent(`${globalVariable}`); // eslint-disable-line no-undef,camelcase
     }
+    const url = document.URL;
+    const ref = document.referrer;
+    let http = (type === 'Site:Pageurl') ? url.replace(/\?i=([0-9]+)&bz=([0-9]+)&z=([0-9]+)#([0-9_0-9]+)/g, '') : ref.replace(/\?i=([0-9]+)&bz=([0-9]+)&z=([0-9]+)#([0-9_0-9]+)/g, '');
+    const arrUrlReg = http.match(/([^|]+)/i);
+    if (arrUrlReg) {
+      http = `${arrUrlReg[0]}`;
+    }
+    return http.toLowerCase();
+  },
+  getCurrentDomain(type) {
     const url = document.URL;
     const ref = document.referrer;
     let http = (type === 'Site:Pageurl') ? url.replace(/\?i=([0-9]+)&bz=([0-9]+)&z=([0-9]+)#([0-9_0-9]+)/g, '') : ref.replace(/\?i=([0-9]+)&bz=([0-9]+)&z=([0-9]+)#([0-9_0-9]+)/g, '');

@@ -118,8 +118,8 @@ const adsStorage = {
     }
 
     Object.keys(s).reduce(addtos, 0);
-    document.cookie = r.join(':');
     const res = secure && r.push('secure');
+    document.cookie = r.join(':');
     return (res,
       document.cookie,
       true);

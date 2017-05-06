@@ -11,11 +11,19 @@ class Banner extends Entity {
     super(banner);
 
     this.id = `banner-${banner.id}`;
-    this.relative = banner.relative;
+    this.isRelative = banner.isRelative;
+    this.keyword = banner.keyword;
     this.terms = banner.terms;
     this.location = banner.location;
     this.fr = banner.fr;
     this.channel = banner.channel;
+    this.bannerType = banner.bannerType;
+    this.test = banner.test;
+    this.bannerType = banner.bannerType;
+    this.dataBannerHtml = banner.dataBannerHtml;
+    this.linkFormatBannerHtml = banner.linkFormatBannerHtml;
+    this.isIFrame = banner.isIFrame;
+    this.imgUrl = banner.imgUrl;
   }
 
   // Banner Checking Process
@@ -23,7 +31,8 @@ class Banner extends Entity {
     const isBannerAvailable = this.id !== 'banner-undefined';
     const isFitChannel = this.checkChannel;
     const isFitLocation = this.checkLocation;
-    const res = isBannerAvailable && isFitChannel && isFitLocation;
+    const a = this.checkFrequency;
+    const res = isBannerAvailable && isFitChannel && isFitLocation && a;
     // console.log(`${this.id}: ${this.getFrequency()}`);
     return res;
   }
@@ -55,9 +64,9 @@ class Banner extends Entity {
 
   // check channel with new data (using)
   get checkChannel() {
-    if (this.channel) {
+    if (this.channel !== undefined && this.channel !== '') {
       const channel = this.channel;
-      const options = channel.options.filter(item => item.name !== 'Location');
+      const options = channel.options.filter(item => item.name !== 'Location' && item.name !== 'Browser');
       const optionslen = options.length;
       const a = eval; // eslint-disable-line no-eval
       let strChk = '';
@@ -77,53 +86,44 @@ class Banner extends Entity {
             value.reduce((acc, valueItem) => acc || (item.value === valueItem
             && item.optionChannelValueProperties.length > 0), 0));
         }
-
+        const globalVariableName = options[i].globalVariables;
+        const globalVariable = a(`typeof (${globalVariableName}) !== 'undefined' && ${globalVariableName} !== ''`) ? a(globalVariableName) : undefined;
         const logical = options[i].logical === 'and' ? '&&' : '||';
         const comparison = options[i].comparison;
         let stringCheck = '';
-        let _ADM_Channel_temp = typeof (_ADM_Channel) !== 'undefined' && _ADM_Channel !== '' ? _ADM_Channel : ''; // eslint-disable-line
-        // let currentAdditionalDetail = '';
+        let globalVariableTemp = typeof (globalVariable) !== 'undefined' && globalVariable !== '' ? globalVariable : ''; // eslint-disable-line
+        let currentAdditionalDetail = '';
         // console.log('value', value);
         for (let j = 0; j < value.length; j += 1) {
           if (j > 0) stringCheck += '||';
           switch (type) {
             case 'isInputLink' || 'isVariable': {
-              if (typeof (_ADM_Channel) !== 'undefined' && _ADM_Channel !== '') { // eslint-disable-line
-                _ADM_Channel = ''; // eslint-disable-line
+              if (typeof (globalVariable) !== 'undefined' && globalVariable !== '') { // eslint-disable-line
+                a(`${globalVariableName} = ''`); // eslint-disable-line
               }
               // console.log('checkChannel', type, term.getPath2Check('Site:Pageurl'),
               // comparison, value[j]);
               stringCheck += term.checkPathLogic(value[j], 'Site:Pageurl', comparison);
-              if (typeof (_ADM_Channel) !== 'undefined' && _ADM_Channel !== '') { // eslint-disable-line
-                _ADM_Channel = _ADM_Channel_temp; // eslint-disable-line
+              if (typeof (globalVariable) !== 'undefined' && globalVariable !== '') { // eslint-disable-line
+                  a(`${globalVariableName} = globalVariableTemp`); // eslint-disable-line
               }
               break;
             }
             case 'isSelectOption': {
-              const getThisChannel = () => {
-                const path = term.getPath2Check('Site:Pageurl');
-                let Channel;
-                if (path.indexOf('http://') !== -1) {
-                  Channel = path.substring(7).split('/');
-                  Channel.shift();
-                } else {
-                  Channel = path.split('/');
-                  Channel.shift();
-                  Channel.pop();
-                }
-                return Channel;
-              };
-              const thisChannel = getThisChannel();
+              const Pageurl = term.getPath2Check('Site:Pageurl', globalVariableName);
+              const thisChannel = util.getThisChannel(Pageurl);
+              thisChannel.shift();
 
               // do smt with additionalDetail
               if (additionalDetail.length > 0) {
                 // region : get link detail
-                if (typeof (_ADM_Channel) !== 'undefined' && _ADM_Channel !== '') { // eslint-disable-line
-                  _ADM_Channel = ''; // eslint-disable-line
+                if (typeof (globalVariable) !== 'undefined' && globalVariable !== '') { // eslint-disable-line
+                  a(`${globalVariableName} = ''`);
                 }
-                // currentAdditionalDetail = getThisChannel().pop();
-                if (typeof (_ADM_Channel) !== 'undefined' && _ADM_Channel !== '') { // eslint-disable-line
-                  _ADM_Channel = _ADM_Channel_temp; // eslint-disable-line
+                currentAdditionalDetail = util.getThisChannel(Pageurl).pop();
+                currentAdditionalDetail.shift();
+                if (typeof (globalVariable) !== 'undefined' && globalVariable !== '') { // eslint-disable-line
+                  a(`${globalVariableName} = globalVariableTemp`);
                 }
                 // endregion : get link detail
 
@@ -152,7 +152,7 @@ class Banner extends Entity {
         if (i > 0) strChk += logical;
         strChk += CheckValue;
       }
-      // console.log('checkChannel', strChk);
+      console.log('checkChannel', strChk);
       return a(strChk);
     }
     return true;
@@ -179,33 +179,39 @@ class Banner extends Entity {
   // check Location with new data (using)
   get checkLocation() {
     let location = this.getLocation;
-    location = (typeof (location) === 'undefined' ||
-    location === undefined || location == null) ? 0 : location;
-    const strlocation = `${util.convertLocation(window.ADSData.ADSLocation).R}`;
-    const strcity = `${util.convertLocation(window.ADSData.ADSCity).RC}`;
-    const strcitymain = `${util.convertLocation(window.ADSData.ADSCityMain).RC}`;
-    // console.log(`Check Location ${strcity} isBelongTo ${location.location}`);
-    return (!!((location === '0') ||
-    ((`${location.location}`).indexOf(strcity) !== -1 && location.comparison === '==') ||
-    ((`${location.location}`).indexOf(strcitymain) !== -1 && location.comparison === '==') ||
-    ((`${location.location}`).indexOf(strlocation) !== -1 && location.comparison === '==')));
+    if (location !== undefined && location !== 0) {
+      location = (typeof (location) === 'undefined' ||
+      location === undefined || location == null) ? 0 : location;
+      const strlocation = `${util.convertLocation(window.ADSData.ADSLocation).R}`;
+      const strcity = `${util.convertLocation(window.ADSData.ADSCity).RC}`;
+      const strcitymain = `${util.convertLocation(window.ADSData.ADSCityMain).RC}`;
+      console.log(`Check Location ${strcity} isBelongTo ${location.location}`);
+      return (!!((location === '0') ||
+      ((`${location.location}`).indexOf(strcity) !== -1 && location.comparison === '==') ||
+      ((`${location.location}`).indexOf(strcitymain) !== -1 && location.comparison === '==') ||
+      ((`${location.location}`).indexOf(strlocation) !== -1 && location.comparison === '==')));
+    }
+    return true;
   }
 
   // get location from channel's options
   get getLocation() {
-    // console.log('getLocation run');
-    const onlocations = this.channel.options.filter(item => item.name === 'Location' && item.comparison === '==');
-    if (onlocations.length > 0) {
+    if (this.channel !== undefined && this.channel !== '') {
+      // console.log('getLocation run');
+      const onlocations = this.channel.options.filter(item => item.name === 'Location' && item.comparison === '==');
+      if (onlocations.length > 0) {
+        return {
+          location: onlocations.reduce((acc, item, index) => (index > 0 ? `${acc},` : '') + item.value, 0),
+          comparison: '==',
+        };
+      }
+      const exceptLocation = this.channel.options.filter(item => item.name === 'Location' && item.comparison === '!=');
       return {
-        location: onlocations.reduce((acc, item, index) => (index > 0 ? `${acc},` : '') + item.value, 0),
-        comparison: '==',
+        location: exceptLocation.reduce((acc, item, index) => (index > 0 ? `${acc},` : '') + item.value, 0),
+        comparison: '!=',
       };
     }
-    const exceptLocation = this.channel.options.filter(item => item.name === 'Location' && item.comparison === '!=');
-    return {
-      location: exceptLocation.reduce((acc, item, index) => (index > 0 ? `${acc},` : '') + item.value, 0),
-      comparison: '!=',
-    };
+    return 0;
   }
 
   // old data(not use)
@@ -244,20 +250,21 @@ class Banner extends Entity {
     fr = parseInt(fr, 10);
     const count = this.getFrequency();
     if (count > fr) {
-      // // console.log(`${this.id}: `, this.getFrequency());
+      console.log(`${this.id}: `, this.getFrequency());
       return false;
     }
     return true;
   }
 
   countFrequency() {
+    const domain = term.getCurrentDomain('Site:Pageurl');
     const bannerID = this.id;
     let cookie = adsStorage.getStorage('_fr');
     const checkCookie = adsStorage.subCookie(cookie, 'Ver:', 0);
     if (checkCookie === '') {
       cookie = 'Ver:25;';
     }
-    adsStorage.setStorage('_fr', cookie, '', '/');
+    adsStorage.setStorage('_fr', cookie, '', '/', domain);
     if (`${cookie}`.indexOf(bannerID) !== -1) {
       const FrequencyStr = adsStorage.subCookie(cookie, `${bannerID}:`, 0).toString();
       const currentCount = this.getFrequency();
@@ -267,9 +274,9 @@ class Banner extends Entity {
       }
     } else {
       cookie = bannerID === 'banner-undefined' ? cookie : `${cookie};${bannerID}:1;`;
-      // console.log(adsStorage.subCookie(cookie, `${bannerID}:`, 0).toString());
+      console.log(adsStorage.subCookie(cookie, `${bannerID}:`, 0).toString());
     }
-    adsStorage.setStorage('_fr', cookie, '', '/');
+    adsStorage.setStorage('_fr', cookie, '', '/', domain);
   }
 
   getFrequency() {
@@ -282,18 +289,6 @@ class Banner extends Entity {
     }
     return '';
   }
-
-  // get checkScreen() {
-  //
-  // }
-  //
-  // get checkMoile() {
-  //
-  // }
-  //
-  // get checkRelative() {
-  //
-  // }
 
 }
 
