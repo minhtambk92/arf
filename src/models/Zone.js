@@ -168,7 +168,7 @@ class Zone extends Entity {
           ({ data: item, index: item.positionOnShare - 1 })));
       }
       return allPlace.push(share.allPlacements.map((item, index) =>
-          ({ data: item, index })));
+        ({ data: item, index })));
     }, 0);
     allPlace = util.flatten(allPlace);
     console.log('allPlaceZone', allPlace);
@@ -392,7 +392,7 @@ class Zone extends Entity {
     //     } else {
     //       for (let i = 0; i < monopolyPlacesWithShare.length; i += 1) {
     //         combinationMonopolyPlaces = combinationMonopolyPlaces.concat(
-    //           util.k_combinations(monopolyPlacesWithShare[i], 1).filter(item =>
+    //           util.kCombinations(monopolyPlacesWithShare[i], 1).filter(item =>
     //             item.reduce((acc, item2) =>
     //               ((acc + item2.data.PlacementArea) < this.ZoneArea), 0)));
     //       }
@@ -464,7 +464,7 @@ class Zone extends Entity {
               // find all placement fit with area place
               let places = allPlacement.filter(place =>
                 (
-                // getNumberOfParts(place.data.height, true) < numberOfParts &&
+                  // getNumberOfParts(place.data.height, true) < numberOfParts &&
                 getNumberOfParts(this.zoneType === 'right' ? place.data.height : place.data.width, true) === placeRatio &&
                 // place.data.PlacementArea === placeRatio &&
                 placeMonopolies.indexOf(place) === -1 &&
@@ -681,7 +681,7 @@ class Zone extends Entity {
           } else {
             for (let i = 0; i < monopolyPlacesWithShare.length; i += 1) {
               combinationMonopolyPlaces = combinationMonopolyPlaces.concat(
-                util.k_combinations(monopolyPlacesWithShare[i], 1).filter(item =>
+                util.kCombinations(monopolyPlacesWithShare[i], 1).filter(item =>
                   item.reduce((acc, item2) =>
                     ((acc + item2.data.PlacementArea) < this.ZoneArea), 0)));
             }
@@ -834,7 +834,7 @@ class Zone extends Entity {
     const randomNumber = Math.random() * 100;
     const ratio = allShare.reduce((tmp, share) => {
       if (share.weight === undefined) {
-        share.weight = 100 / allShare.length; // eslint-disable-line
+          share.weight = 100 / allShare.length; // eslint-disable-line
       }
       return (share.weight + tmp);
     }, 0) / 100;
