@@ -79,7 +79,7 @@ const Placement = Vue.component('placement', {
               width: '35%',
               textAlign: 'center',
             }}
-          >{vm.current.revenueType}</p></div>
+          >{vm.current.revenueType} {vm.current.positionOnShare}</p></div>
         </div>
       );
     }
@@ -89,7 +89,7 @@ const Placement = Vue.component('placement', {
         class="arf-placement"
         style={{
           width: `${vm.current.width}px`,
-          height: `${vm.current.height}px`,
+          // height: `${vm.current.height}px`,
         }}
       >
         <Banner model={vm.activeBannerModel} />

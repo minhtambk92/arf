@@ -23,9 +23,8 @@ class Banner extends Entity {
     this.dataBannerHtml = banner.dataBannerHtml;
     this.linkFormatBannerHtml = banner.linkFormatBannerHtml;
     this.isIFrame = banner.isIFrame;
-    this.imgUrl = banner.imgUrl;
+    this.imageUrl = banner.imageUrl;
   }
-
   // Banner Checking Process
   isRenderable() {
     const isBannerAvailable = this.id !== 'banner-undefined';
@@ -33,10 +32,9 @@ class Banner extends Entity {
     const isFitLocation = this.checkLocation;
     const a = this.checkFrequency;
     const res = isBannerAvailable && isFitChannel && isFitLocation && a;
-    // console.log(`${this.id}: ${this.getFrequency()}`);
+    console.log(`${this.id}: fre:${a}, channel: ${isFitChannel}, location: ${isFitLocation}, isBannerAvailable: ${isBannerAvailable}`);
     return res;
   }
-
   // check term old data (not use)
   get checkTerm() {
     if (this.terms) {
@@ -61,38 +59,36 @@ class Banner extends Entity {
 
     return true;
   }
-
   // check channel with new data (using)
   get checkChannel() {
-    if (this.channel !== undefined && this.channel !== '') {
+    if (this.channel !== undefined && this.channel !== null && this.channel !== '') {
       const channel = this.channel;
       const options = channel.options.filter(item => item.name !== 'Location' && item.name !== 'Browser');
-      const optionslen = options.length;
+      const optionsLength = options.length;
       const a = eval; // eslint-disable-line no-eval
       let strChk = '';
 
-      for (let i = 0; i < optionslen; i += 1) {
+      for (let i = 0; i < optionsLength; i += 1) {
         const optionChannelType = options[i].optionChannelType;
+        const value = options[i].value.toString().split(',');
+        const comparison = options[i].comparison;
+        const logical = options[i].logical === 'and' ? '&&' : '||';
+        const globalVariableName = options[i].globalVariables;
+        const globalVariable = a(`typeof (${globalVariableName}) !== 'undefined' && ${globalVariableName} !== ''`) ? a(globalVariableName) : undefined;
+        let globalVariableTemp = typeof (globalVariable) !== 'undefined' && globalVariable !== '' ? globalVariable : ''; // eslint-disable-line
+        let currentAdditionalDetail = '';
         let type = optionChannelType.isInputLink ? 'isInputLink' : '';
+        let stringCheck = '';
+        let additionalDetail = []; // get optionChannelValueProperties
         type = optionChannelType.isSelectOption ? 'isSelectOption' : type;
         type = optionChannelType.isVariable ? 'isVariable' : type;
-        const value = options[i].value.toString().split(',');
-        // console.log('valueCheck', value);
 
-        // get optionChannelValueProperties
-        let additionalDetail = [];
+        // console.log('valueCheck', value);
         if (optionChannelType.optionChannelValues.length > 0) {
           additionalDetail = optionChannelType.optionChannelValues.filter(item =>
             value.reduce((acc, valueItem) => acc || (item.value === valueItem
             && item.optionChannelValueProperties.length > 0), 0));
         }
-        const globalVariableName = options[i].globalVariables;
-        const globalVariable = a(`typeof (${globalVariableName}) !== 'undefined' && ${globalVariableName} !== ''`) ? a(globalVariableName) : undefined;
-        const logical = options[i].logical === 'and' ? '&&' : '||';
-        const comparison = options[i].comparison;
-        let stringCheck = '';
-        let globalVariableTemp = typeof (globalVariable) !== 'undefined' && globalVariable !== '' ? globalVariable : ''; // eslint-disable-line
-        let currentAdditionalDetail = '';
         // console.log('value', value);
         for (let j = 0; j < value.length; j += 1) {
           if (j > 0) stringCheck += '||';
@@ -101,8 +97,8 @@ class Banner extends Entity {
               if (typeof (globalVariable) !== 'undefined' && globalVariable !== '') { // eslint-disable-line
                 a(`${globalVariableName} = ''`); // eslint-disable-line
               }
-              // console.log('checkChannel', type, term.getPath2Check('Site:Pageurl'),
-              // comparison, value[j]);
+              // eslint-disable-next-line
+              // console.log('checkChannel', type, term.getPath2Check('Site:Pageurl'),comparison, value[j]);
               stringCheck += term.checkPathLogic(value[j], 'Site:Pageurl', comparison);
               if (typeof (globalVariable) !== 'undefined' && globalVariable !== '') { // eslint-disable-line
                   a(`${globalVariableName} = globalVariableTemp`); // eslint-disable-line
@@ -157,7 +153,6 @@ class Banner extends Entity {
     }
     return true;
   }
-
   // get CheckLocation() {
   //   let location = this.location;
   //   location = (typeof (location) === 'undefined' ||
@@ -193,19 +188,18 @@ class Banner extends Entity {
     }
     return true;
   }
-
   // get location from channel's options
   get getLocation() {
-    if (this.channel !== undefined && this.channel !== '') {
+    if (this.channel !== undefined && this.channel !== null && this.channel !== '') {
       // console.log('getLocation run');
-      const onlocations = this.channel.options.filter(item => item.name === 'Location' && item.comparison === '==');
-      if (onlocations.length > 0) {
+      const onLocations = this.channel.options.filter(item => item.name === 'Location' && item.comparison === '==');
+      const exceptLocation = this.channel.options.filter(item => item.name === 'Location' && item.comparison === '!=');
+      if (onLocations.length > 0) {
         return {
-          location: onlocations.reduce((acc, item, index) => (index > 0 ? `${acc},` : '') + item.value, 0),
+          location: onLocations.reduce((acc, item, index) => (index > 0 ? `${acc},` : '') + item.value, 0),
           comparison: '==',
         };
       }
-      const exceptLocation = this.channel.options.filter(item => item.name === 'Location' && item.comparison === '!=');
       return {
         location: exceptLocation.reduce((acc, item, index) => (index > 0 ? `${acc},` : '') + item.value, 0),
         comparison: '!=',
@@ -213,7 +207,6 @@ class Banner extends Entity {
     }
     return 0;
   }
-
   // old data(not use)
   get checkBrowser() {
     let browser = this.browser;
@@ -222,33 +215,16 @@ class Banner extends Entity {
     browser == null ||
     browser === '') ? 0 : browser;
     browser = `,${browser},`.toLowerCase();
-    const ua = navigator.userAgent;
-    let tem;
-    let M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-    if (/trident/i.test(M[1])) {
-      tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
-      return `IE ${tem[1] || ''}`;
-    }
-    if (M[1] === 'Chrome') {
-      tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
-      if (tem != null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
-    }
-    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
-    tem = ua.match(/version\/(\d+)/i);
-    if (tem != null) {
-      M.splice(1, 1, tem[1]);
-    }
-    const currentBrowser = M.join(' ').substring(0, (M.join(' ').indexOf(' '))).toLowerCase();
-    return (browser !== ',,' && browser !== ',0,') ? (`${browser}`.indexOf(currentBrowser) !== -1) : true;
+    return (browser !== ',,' && browser !== ',0,') ? (`${browser}`.indexOf(util.getCurrentBrowser) !== -1) : true;
   }
 
   get checkFrequency() {
     let fr = this.fr;
+    const count = this.getFrequency();
     if (fr === '' || fr === 'undefined' || fr === undefined) {
       return true;
     }
     fr = parseInt(fr, 10);
-    const count = this.getFrequency();
     if (count > fr) {
       console.log(`${this.id}: `, this.getFrequency());
       return false;

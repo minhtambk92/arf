@@ -19,6 +19,7 @@ class Placement extends Entity {
     this.cpd = placement.cpd;
     this.cpm = placement.cpm;
     this.campaign = placement.campaign;
+    this.positionOnShare = placement.positionOnShare;
   }
 
   get PlacementArea() {
@@ -61,6 +62,7 @@ class Placement extends Entity {
         }
         return acc && banner.weight > 0;
       }, 0);
+      console.log('isExitsWeight', isExitsWeight);
       if (!isExitsWeight) {
         const weight = 100 / allBanner.length;
         allBanner.reduce((acc, banner) => (banner.weight = weight), 0); // eslint-disable-line
